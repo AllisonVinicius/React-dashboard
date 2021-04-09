@@ -59,21 +59,21 @@ const Show: React.FC<IRouteParams> = ({match}) => {
 
      
     const pAnos = useMemo(() => {
-        let Uanos: number[] = [];
+        let receveidAnos: number[] = [];
 
         verify.daata.forEach(item => {
             const date = new Date(item.date);
             const vAnos = date.getFullYear();
 
 
-            if(!Uanos.includes(vAnos)){
-                Uanos.push(vAnos);
+            if(!receveidAnos.includes(vAnos)){
+                receveidAnos.push(vAnos);
 
             }
 
         });
 
-        return Uanos.map(vAnos => {
+        return receveidAnos.map(vAnos => {
             return {
                 value:vAnos,
                 label:vAnos,
