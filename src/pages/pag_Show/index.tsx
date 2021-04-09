@@ -36,8 +36,8 @@ interface IData{
 const Show: React.FC<IRouteParams> = ({match}) => {
 /**filtros de informacoes */
     const [data,setData] = useState<IData[]>([]);
-    const [mesSelect, setSelectMes] = useState<string>(String(new Date().getMonth() + 1));
-    const [anosSelect, setSelectAno] = useState<string>(String(new Date().getFullYear()));
+    const [mesSelect, setSelectMes] = useState<number>(new Date().getMonth() + 1);
+    const [anosSelect, setSelectAno] = useState<number>(new Date().getFullYear());
     const [selectFrequencia, setSelecaoFreq] = useState(['recorrente','eventual']);
 
 
@@ -59,21 +59,21 @@ const Show: React.FC<IRouteParams> = ({match}) => {
 
      
     const pAnos = useMemo(() => {
-        let receveidAnos: number[] = [];
+        let receivedAnos: number[] = [];
 
         verify.daata.forEach(item => {
             const date = new Date(item.date);
             const vAnos = date.getFullYear();
 
 
-            if(!receveidAnos.includes(vAnos)){
-                receveidAnos.push(vAnos);
+            if(!receivedAnos.includes(vAnos)){
+                receivedAnos.push(vAnos);
 
             }
 
         });
 
-        return receveidAnos.map(vAnos => {
+        return receivedAnos.map(vAnos => {
             return {
                 value:vAnos,
                 label:vAnos,
@@ -105,11 +105,33 @@ const Show: React.FC<IRouteParams> = ({match}) => {
             }
     }   
 
+    const handMesSelecionado = (mes: string) => {
+        //funcao recebe o mes em string e convete p/numero;
+        try{
+            const parseMes = Number(mes);
+            setSelectMes(parseMes);
+        }
+        catch(error){
+            throw new  Error('valor invalido de mes');
+        }
+    }
+
+    const handAnoSelecionado = (mes: string) => {
+        //funcao recebe o ano em string e convete p/numero;
+        try{
+            const parseAno = Number(mes);
+            setSelectAno(parseAno);
+        }
+        catch(error){
+            throw new  Error('valor invalido de Ano');
+        }
+    }
+
     useEffect(() => {
        const dataFiltrada =  verify.daata.filter(item => {
         const date = new Date(item.date);
-        const mes = String(date.getMonth() + 1);
-        const ano = String(date.getFullYear());
+        const mes = date.getMonth() + 1;
+        const ano = date.getFullYear();
 
         return mes === mesSelect &&  ano === anosSelect && selectFrequencia.includes(item.frequencia);
        });
@@ -131,8 +153,8 @@ const Show: React.FC<IRouteParams> = ({match}) => {
     return (
         <Container>
              <ContentHeader title={verify.title} lineColor={verify.lineColor}>
-                <SelectEntrada options={pMeses}  onChange={(e) => setSelectMes(e.target.value)} defaultValue={mesSelect}/>
-                <SelectEntrada options={pAnos} onChange={(e) => setSelectAno(e.target.value)} defaultValue={anosSelect}/>
+                <SelectEntrada options={pMeses}  onChange={(e) => handMesSelecionado(e.target.value)} defaultValue={mesSelect}/>
+                <SelectEntrada options={pAnos} onChange={(e) => handAnoSelecionado(e.target.value)} defaultValue={anosSelect}/>
             </ContentHeader>
 
             <Filters>
@@ -150,13 +172,13 @@ const Show: React.FC<IRouteParams> = ({match}) => {
 
             <Content>
                 {
-                    data.map(item => (
+                    data.map(acess => (
                         <MovimentoFinanceiro  
-                            key={item.id}
-                            bordaCartao={item.tagColor} /**cor da borda dos itens */
-                            title={item.descricao}
-                            subTitle={item.dataFormat}
-                            valor={item.valor}                
+                            key={acess.id}
+                            bordaCartao={acess.tagColor} /**cor da borda dos itens */
+                            title={acess.descricao}
+                            subTitle={acess.dataFormat}
+                            valor={acess.valor}                
                         />
                     ))
                 }
