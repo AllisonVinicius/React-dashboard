@@ -43,27 +43,25 @@ const Show: React.FC<IRouteParams> = ({match}) => {
 
     const { type } = match.params;
 
-    const title = useMemo(() => {
-        return type === 'entrada' ? 'Entradas' : 'Saidas'
+    const verify = useMemo(() => {
+        return  type === 'entrada' ?
+            {
+                title: 'Entradas',
+                lineColor: '#228B22',
+                daata: ganho
 
-    },[type]);
-
-
-    const lineColor = useMemo(() => {
-        return type === 'entrada' ? '#228B22' : '#E44C4E'
-    },[type]);
-
-
-    const listData = useMemo(() =>{
-        return type === 'entrada' ? ganho : gastosTeste;
-
+            }:{
+                title: 'Saídas',
+                lineColor: '#E44C4E',
+                daata: gastosTeste        
+        }
     },[type]);
 
      
     const pAnos = useMemo(() => {
         let Uanos: number[] = [];
 
-        listData.forEach(item => {
+        verify.daata.forEach(item => {
             const date = new Date(item.date);
             const vAnos = date.getFullYear();
 
@@ -81,7 +79,7 @@ const Show: React.FC<IRouteParams> = ({match}) => {
                 label:vAnos,
             }
         });
-    },[listData]);
+    },[verify.daata]);
     
 
     const pMeses = useMemo(() => {
@@ -108,7 +106,7 @@ const Show: React.FC<IRouteParams> = ({match}) => {
     }   
 
     useEffect(() => {
-       const dataFiltrada =  listData.filter(item => {
+       const dataFiltrada =  verify.daata.filter(item => {
         const date = new Date(item.date);
         const mes = String(date.getMonth() + 1);
         const ano = String(date.getFullYear());
@@ -128,11 +126,11 @@ const Show: React.FC<IRouteParams> = ({match}) => {
             } 
         });
         setData(dataFormatada);
-    },[listData,mesSelect,anosSelect, data.length, selectFrequencia]);
+    },[verify.daata,mesSelect,anosSelect, data.length, selectFrequencia]);
 
     return (
         <Container>
-             <ContentHeader title={title} lineColor={lineColor}>
+             <ContentHeader title={verify.title} lineColor={verify.lineColor}>
                 <SelectEntrada options={pMeses}  onChange={(e) => setSelectMes(e.target.value)} defaultValue={mesSelect}/>
                 <SelectEntrada options={pAnos} onChange={(e) => setSelectAno(e.target.value)} defaultValue={anosSelect}/>
             </ContentHeader>
