@@ -1,5 +1,6 @@
 
 import React,{useMemo} from 'react';
+import CountUp from 'react-countup';
 
 
 import cifrao from '../../assets/cifrao.svg';
@@ -40,7 +41,7 @@ const PalletCards: React.FC<IpalletCards> = ({
     return (
         <Container color={color}>
             <span>{title}</span>
-            <h1>{valor}</h1>
+            <h1><CountUp end={valor} prefix={"R$ "} separator="." decimal="," decimals={2}/></h1> 
             <small>{avisoLabel}</small>
             {<img src = {iconSelecionado} alt={title} />}
           
