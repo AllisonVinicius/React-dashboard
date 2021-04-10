@@ -8,6 +8,14 @@ import ListaMeses from '../../utils/meses';
 
 import PalletCards from '../../components/palletCards';
 
+import MsgemBox from '../../components/MsgemBox';
+
+import feliz from '../../assets/feliz.svg';
+import triste from '../../assets/triste.svg';
+
+
+
+
 const Dashboard: React.FC = () => {
     const [mesSelect, setSelectMes] = useState<number>(new Date().getMonth() + 1);
     const [anosSelect, setSelectAno] = useState<number>(new Date().getFullYear());
@@ -50,6 +58,29 @@ const Dashboard: React.FC = () => {
         });
         
     },[]);
+
+
+    const totalGastos = useMemo (() => {
+        let total: number = 0;
+
+        gastosTeste.forEach(item => {
+            const date = new Date(item.date);
+            const mes = date.getFullYear();
+            const ano = date.getMonth() + 1;
+       
+            if(ano === mesSelect && ano == anosSelect){
+                try{
+                    total += Number(item.valor);
+                }catch{
+                    throw new Error('Invado Valor');
+                }
+            }
+        });
+
+
+    },[]);
+
+
     const handMesSelecionado = (mes: string) => {
         //funcao recebe o mes em string e convete p/numero;
         try{
@@ -102,6 +133,9 @@ const Dashboard: React.FC = () => {
                     icon="setaBaixo"
                     color= '#00C'
                 />
+
+                <MsgemBox  title="Muito Bom" descricao="Sua carteira pPOisc" footerTex="Contnue asso," icon={triste}/>
+                
             </Content>
         </Container>
     );
