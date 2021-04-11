@@ -1,12 +1,12 @@
 import React from 'react';
 
-//import {PieChart, Pie,Cell,ResponsiveContainer} from 'recharts'; //importacao para grafico
+import {PieChart, Pie,Cell,ResponsiveContainer} from 'recharts'; //importacao para grafico
 
 
-import {Container,LadoEsquerdo,Legend,LegendContainer } from './stylePieChart';
+import {Container,LadoEsquerdo,Legend,LegendContainer, LadoDireito } from './stylePieChart';
 
 interface IPieProps {
-    propriedades: {
+    verify: {
         name: string;
         valor: number;
         percent: number;
@@ -14,13 +14,13 @@ interface IPieProps {
     }[];
 }
 
-const PiChart: React.FC<IPieProps> = ({propriedades}) => (
+const PiChart: React.FC<IPieProps> = ({verify}) => (
         <Container>
             <LadoEsquerdo>
                 <h2>Relacão</h2>
                 <LegendContainer>
                     {
-                        propriedades.map( p => (    
+                        verify.map( p => (    
                             <Legend key={p.name} color={p.color}>
                                 <div>{p.percent}</div>
                                 <span>{p.name}</span>
@@ -29,10 +29,21 @@ const PiChart: React.FC<IPieProps> = ({propriedades}) => (
                     }
                 </LegendContainer>
             </LadoEsquerdo>
-
-
-
-        </Container>
+            
+            <LadoDireito>
+                <ResponsiveContainer>
+                    <PieChart>
+                        <Pie data = {verify} dataKey= "percent">
+                            {
+                                verify.map((p) => ( //percorre as celular do grafico
+                                    <Cell key = {p.name} fill = {p.color} />
+                                ))
+                            }
+                        </Pie>
+                    </PieChart>
+                </ResponsiveContainer>
+            </LadoDireito>
+       </Container>
     );
 
 export default PiChart;

@@ -66,11 +66,16 @@ export const LegendContainer  = styled.ul`
     }
 
 
-::-webkit-scrollbar-track{
+    ::-webkit-scrollbar-track{
         background-color: ${props => props.theme.colors.tertiary};
 
     }
 
 `;
 
-export const LadoDireito = styled.main``;
+export const LadoDireito = styled.main`
+    display :flex;
+    flex: 1;
+    justify-content: center;
+
+`;
