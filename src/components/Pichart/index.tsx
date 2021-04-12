@@ -19,7 +19,7 @@ const PiChart: React.FC<IPieProps> = ({verify}) => (
             <LadoEsquerdo>
                 <h2>Relacão</h2>
                 <LegendContainer>
-                    {
+                    { 
                         verify.map( p => (    
                             <Legend key={p.name} color={p.color}>
                                 <div>{p.percent}</div>
@@ -33,9 +33,9 @@ const PiChart: React.FC<IPieProps> = ({verify}) => (
             <LadoDireito>
                 <ResponsiveContainer>
                     <PieChart>
-                        <Pie data = {verify} dataKey= "percent">
-                            {
-                                verify.map((p) => ( //percorre as celular do grafico
+                        <Pie data = {verify} dataKey= "percent"> 
+                            {//grafico de pizza!
+                                verify.map((p) => ( //percorre as celula do grafico
                                     <Cell key = {p.name} fill = {p.color} />
                                 ))
                             }
