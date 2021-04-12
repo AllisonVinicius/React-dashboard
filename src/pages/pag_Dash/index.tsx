@@ -1,19 +1,23 @@
 import React, {useState,useMemo} from 'react';
 import {Container,Content} from './style';
 import ContentHeader from '../../components/contentHeader';
+
 import ganho from '../../arquivosEntradaTeste/ganho';
-import gastosTeste from '../../arquivosEntradaTeste/gastosTeste'
+import gastosTeste from '../../arquivosEntradaTeste/gastosTeste';
+
 import SelectEntrada from '../../components/SelecEntrada';
 import ListaMeses from '../../utils/meses';
 
 import PalletCards from '../../components/palletCards';
 
-import MsgemBox from '../../components/MsgemBox';
+import MsgemBox from '../../components/mesangemBox';
 
-import feliz from '../../assets/feliz.svg';
+import happy from '../../assets/happy.svg';
 import triste from '../../assets/triste.svg';
 
+import Neutral from '../../assets/neutral.svg';
 
+import PiChart  from '../../components/Pichart';
 
 
 const Dashboard: React.FC = () => {
@@ -21,11 +25,7 @@ const Dashboard: React.FC = () => {
     const [anosSelect, setSelectAno] = useState<number>(new Date().getFullYear());
         
     
-    const options = [
-        {value: 'Allison', label: 'Allison'},
-        {value: 'Vinicus', label: 'vinicus'},
-        {value: 'araujo', label: 'araujo'}
-    ];
+  
          
     const pAnos = useMemo(() => {
         let receivedAnos: number[] = [];
@@ -59,27 +59,113 @@ const Dashboard: React.FC = () => {
         
     },[]);
 
-
-    const totalGastos = useMemo (() => {
+    const totalGanhos = useMemo (() => {
         let total: number = 0;
 
-        gastosTeste.forEach(item => {
+        ganho.forEach(item => {
             const date = new Date(item.date);
-            const mes = date.getFullYear();
-            const ano = date.getMonth() + 1;
+            const ano = date.getFullYear();
+            const mes = date.getMonth() + 1;
        
-            if(ano === mesSelect && ano == anosSelect){
+            if(mes === mesSelect && ano === anosSelect){
                 try{
-                    total += Number(item.valor);
+                    total += Number(item.valor)
                 }catch{
                     throw new Error('Invado Valor');
                 }
             }
         });
 
+        return total;
 
-    },[]);
 
+    },[mesSelect,anosSelect]);
+
+
+
+    const totalGastos = useMemo (() => {
+        let total: number = 0;
+
+        gastosTeste.forEach(item => {
+            const date = new Date(item.date);
+            const ano = date.getFullYear();
+            const mes = date.getMonth() + 1;
+       
+            if(mes === mesSelect && ano === anosSelect){
+                try{
+                    total += Number(item.valor)
+                }catch{
+                    throw new Error('Invado Valor');
+                }
+            }
+        });
+
+        return total;
+
+
+    },[mesSelect,anosSelect]);
+
+
+    const balancoTotal = useMemo (() => {
+       return totalGanhos - totalGastos;
+
+    },[totalGanhos,totalGastos]);
+
+
+    const msgemStatus = useMemo (() => { //funcao para retornar o status de acorda com o valores do mes
+        if (balancoTotal < 0){
+            return {
+                title: "Que triste",
+                descricao:"Gastou muitoo dinheiro filho" ,
+                footerTex:"Planeje Melhor",
+                 icon: triste
+              
+            }
+        }else if (balancoTotal ===   0) {
+            return {
+                title: "Na medida do possiveel",
+                descricao:"Nao divida nem sobrou" ,
+                footerTex:"Toma cuidado!",
+                 icon: Neutral
+            }
+              
+        
+       }else{
+            return {
+                title: "Sua carteira positiva",
+                descricao:"Nao divida nem sobrou" ,
+                footerTex:"Toma cuidado!",
+                icon: happy
+            }
+        }
+
+    },[balancoTotal]);
+
+
+
+    const diferencyEntradasSaidas = useMemo(() => {
+        const total = totalGanhos + totalGastos;
+        const percentualGanhos = (totalGanhos / total) * 100;
+        const percentualGastos = (totalGastos / total) * 100;
+
+        const verify = [
+            {
+                name: "Entradas",
+                valor: totalGastos,
+                percent: Number(percentualGanhos.toFixed(1)),
+                color: '#E44C4E'
+            },{
+
+                name: "Saídas",
+                valor: totalGastos,
+                percent: Number(percentualGastos.toFixed(1)),
+                color: '#F7931B'
+            },
+        ];
+
+
+        return verify;
+    },[totalGanhos,totalGastos]);
 
     const handMesSelecionado = (mes: string) => {
         //funcao recebe o mes em string e convete p/numero;
@@ -112,29 +198,31 @@ const Dashboard: React.FC = () => {
             <Content>
                 <PalletCards
                     title="Saldo"
-                    valor ={150.00}
+                    valor ={balancoTotal}
                     avisoLabel="atualizado basrado nas entradas"              
                     icon="cifrao"
-                    color= '#00CED1'
+                    color= '#10b834'
                 />
 
                 <PalletCards
-                    title="Saldo"
-                    valor ={5000.00}
+                    title="Entrada"
+                    valor ={totalGanhos}
                     avisoLabel="atualizado basrado nas entradas"              
                     icon="setaCima"
                     color= '#ED1'
                 />
 
                 <PalletCards
-                    title="Saldo"
-                    valor ={2500.00}
+                    title="Saída"
+                    valor ={totalGastos}
                     avisoLabel="atualizado basrado nas entradas"              
                     icon="setaBaixo"
-                    color= '#00C'
+                    color= '#DC143C'
                 />
 
-                <MsgemBox  title="Muito Bom" descricao="Sua carteira pPOisc" footerTex="Contnue asso," icon={triste}/>
+                <MsgemBox  title={msgemStatus.title} descricao={msgemStatus.descricao} footerTex={msgemStatus.footerTex} icon={msgemStatus.icon}/>
+
+                <PiChart verify={diferencyEntradasSaidas}/>
                 
             </Content>
         </Container>
