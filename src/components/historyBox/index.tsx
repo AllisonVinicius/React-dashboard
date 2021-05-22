@@ -2,6 +2,18 @@ import React from 'react';
 import {Container} from './styleBox';
 import { ResponsiveContainer, LineChart, Line, XAxis, CartesianGrid, Tooltip} from 'recharts';
 
+
+interface IHistoryBoxProps {
+    data:{
+        mes: string;
+        resultadoEntrada: number;
+        resultadoSaida: number;
+
+    }[],
+    lineColorResultadoEntrada: string;
+    lineColorResultadoSaida: string;
+}
+
 const HistoryBox: React.FC = () => (
    
         <Container>
@@ -9,11 +21,11 @@ const HistoryBox: React.FC = () => (
             <ResponsiveContainer>
                 <LineChart data={[]}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#cece" />
-                    <XAxis dataKey="month" stroke="#cece" />
+                    <XAxis dataKey="mes" stroke="#cece" />
                     <Tooltip />
                         <Line
                             type="monotone"
-                            dataKey="amountEntry"
+                            dataKey="resultadoEntrada"
                             name="Entradas"
                             stroke="#77e44c"
                             strokeWidth={5}
@@ -22,7 +34,7 @@ const HistoryBox: React.FC = () => (
                         />
                         <Line
                             type="monotone"
-                            dataKey="amountOutput"
+                            dataKey="resultadoSaida"
                             name="Saídas"
                             stroke="#E44C4E"
                             strokeWidth={5}
