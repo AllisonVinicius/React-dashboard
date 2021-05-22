@@ -19,6 +19,7 @@ import Neutral from '../../assets/neutral.svg';
 
 import PiChart  from '../../components/Pichart';
 
+import HistoryBox from '../../components/historyBox';
 
 const Dashboard: React.FC = () => {
     const [mesSelect, setSelectMes] = useState<number>(new Date().getMonth() + 1);
@@ -156,7 +157,7 @@ const Dashboard: React.FC = () => {
                 color: '#E44C4E'
             },{
 
-                name: "Saidas",
+                name: "Saídas",
                 valor: totalGastos,
                 percent: Number(percentualGastos.toFixed(1)),
                 color: '#F7931B'
@@ -166,6 +167,48 @@ const Dashboard: React.FC = () => {
 
         return data;
     },[totalGanhos,totalGastos]);
+
+
+    const historyData = useMemo(() => {
+        return ListaMeses.map((_,mes) => {
+            let  resultEntrada = 0;
+            ganho.forEach(gain => {
+                const data = new Date(gain.date);
+                const gainMes = data.getMonth();
+                const gainYear = data.getFullYear();
+
+                if(gainMes === mes && gainYear === anosSelect){
+                 try{
+                    resultEntrada += Number(gain.valor);
+                }catch{
+                    throw new Error("Valor invalido");
+                 }
+                }
+
+            });
+
+
+            let  resultSaida = 0;
+            gastos.forEach(gasto => {
+                const data = new Date(gasto.date);
+                const gastoMes = data.getMonth();
+                const gastoYear = data.getFullYear();
+
+                if(gastoMes === mes &&gastoYear === anosSelect){
+                 try{
+                    resultEntrada += Number(gasto.valor);
+                }catch{
+                    throw new Error("Valor invalido");
+                 }
+                }
+
+            });    
+
+
+        })
+    
+    },[]);
+    
 
     const handMesSelecionado = (mes: string) => {
         //funcao recebe o mes em string e convete p/numero;
@@ -214,16 +257,27 @@ const Dashboard: React.FC = () => {
 
                 <PalletCards
                     title="Saída"
-                    valor ={totalGastos}
-                    avisoLabel="atualizado basrado nas entradas"              
-                    icon="setaBaixo"
                     color= '#DC143C'
+                    valor ={totalGastos}
+                    avisoLabel="atualizado basrado nas saidas"              
+                    icon="setaBaixo"
                 />
 
-                <MsgemBox  title={msgemStatus.title} descricao={msgemStatus.descricao} footerTex={msgemStatus.footerTex} icon={msgemStatus.icon}/>
+                <MsgemBox  
+                    title={msgemStatus.title} 
+                    descricao={msgemStatus.descricao}
+                    footerTex={msgemStatus.footerTex}
+                    icon={msgemStatus.icon}
+                />
 
-                <PiChart obj={diferencyEntradasSaidas}/>
-                
+                <PiChart data={diferencyEntradasSaidas}/>
+                <HistoryBox 
+                    data={} 
+                    lineColorResultadoEntrada={}
+                    lineColorResultadoSaida={} 
+                />
+
+
             </Content>
         </Container>
     );
