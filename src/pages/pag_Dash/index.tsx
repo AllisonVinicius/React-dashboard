@@ -148,7 +148,7 @@ const Dashboard: React.FC = () => {
         const percentualGanhos = (totalGanhos / total) * 100;
         const percentualGastos = (totalGastos / total) * 100;
 
-        const verify = [
+        const data = [
             {
                 name: "Entradas",
                 valor: totalGastos,
@@ -156,7 +156,7 @@ const Dashboard: React.FC = () => {
                 color: '#E44C4E'
             },{
 
-                name: "Saídas",
+                name: "Saidas",
                 valor: totalGastos,
                 percent: Number(percentualGastos.toFixed(1)),
                 color: '#F7931B'
@@ -164,7 +164,7 @@ const Dashboard: React.FC = () => {
         ];
 
 
-        return verify;
+        return data;
     },[totalGanhos,totalGastos]);
 
     const handMesSelecionado = (mes: string) => {
@@ -222,7 +222,7 @@ const Dashboard: React.FC = () => {
 
                 <MsgemBox  title={msgemStatus.title} descricao={msgemStatus.descricao} footerTex={msgemStatus.footerTex} icon={msgemStatus.icon}/>
 
-                <PiChart verify={diferencyEntradasSaidas}/>
+                <PiChart obj={diferencyEntradasSaidas}/>
                 
             </Content>
         </Container>

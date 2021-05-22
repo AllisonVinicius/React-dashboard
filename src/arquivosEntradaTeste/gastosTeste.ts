@@ -1,3 +1,5 @@
+
+
 export default [
   {"descricao":"Energia elétrica",      "valor":"150.55","type":"saida","frequencia":"recorrente","date":"2020-01-10"},
   {"descricao":"Água",                  "valor":"75.55", "type":"saida","frequencia":"recorrente","date":"2020-01-15"},

@@ -1,6 +1,6 @@
 import React from 'react';
 import logoImg from '../../assets/logo.svg';
-import {MdDashboard,MdArrowDownward,MdArrowUpward,MdMoneyOff,MdAttachMoney} from 'react-icons/md';
+import {MdMoneyOff,MdAttachMoney} from 'react-icons/md';
 import {BiExit} from 'react-icons/bi';
 import {RiDashboardLine} from 'react-icons/ri';
 
