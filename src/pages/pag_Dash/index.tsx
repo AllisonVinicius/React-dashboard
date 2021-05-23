@@ -219,6 +219,7 @@ const Dashboard: React.FC = () => {
 
             return (anosSelect === anoAtual && item.mesNumber <= mesAtual) || (anosSelect < anoAtual)
             
+            
         });
     
     },[anosSelect]);
