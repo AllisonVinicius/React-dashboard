@@ -6,7 +6,7 @@ import {PieChart, Pie,Cell,ResponsiveContainer} from 'recharts'; //importacao pa
 import {Container,LadoEsquerdo,Legend,LegendContainer, LadoDireito } from './stylePieChart';
 
 interface IPieProps {
-    obj: {
+    data: {
         name: string;
         valor: number;
         percent: number;
@@ -14,15 +14,15 @@ interface IPieProps {
     }[];
 }
 
-const PiChart: React.FC<IPieProps> = ({obj}) => (
+const PiChart: React.FC<IPieProps> = ({data}) => (
         <Container>
             <LadoEsquerdo>
                 <h2>Relação</h2>
                 <LegendContainer>
                     { 
-                        obj.map( p => (    
+                        data.map( p => (    
                             <Legend key={p.name} color={p.color}>
-                                <div>{p.percent}</div>
+                                <div>{p.percent}%</div>
                                 <span>{p.name}</span>
                             </Legend>
                         ))
@@ -33,10 +33,10 @@ const PiChart: React.FC<IPieProps> = ({obj}) => (
             <LadoDireito>
                 <ResponsiveContainer>
                     <PieChart>
-                        <Pie data = {obj} dataKey= "percent"> 
+                        <Pie data = {data} dataKey= "percent"> 
                             {//grafico de pizza!
-                                obj.map((p) => ( //percorre as celula do grafico
-                                    <Cell key = {p.name} fill = {p.color} />
+                                data.map((p) => ( //percorre as celula do grafico
+                                    <Cell key={p.name} fill = {p.color} />
                                 ))
                             }
                         </Pie>
