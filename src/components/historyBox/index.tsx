@@ -1,48 +1,67 @@
 import React from 'react';
-import {Container} from './styleBox';
+import {Container, ChartContainer, Header, LegendContainer,Legend} from './styleBox';
 import { ResponsiveContainer, LineChart, Line, XAxis, CartesianGrid, Tooltip} from 'recharts';
+
 
 
 interface IHistoryBoxProps {
     data:{
         mes: string;
-        resultadoEntrada: number;
-        resultadoSaida: number;
+        resultEntrada: number;
+        resultSaida: number;
 
     }[],
     lineColorResultadoEntrada: string;
     lineColorResultadoSaida: string;
 }
 
-const HistoryBox: React.FC = () => (
-   
+const HistoryBox: React.FC<IHistoryBoxProps> = ({
+    data, lineColorResultadoEntrada, lineColorResultadoSaida
+
+}) => (
+  
         <Container>
-            <h2>Histórico de Saldo</h2>
-            <ResponsiveContainer>
-                <LineChart data={[]}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#cece" />
-                    <XAxis dataKey="mes" stroke="#cece" />
-                    <Tooltip />
-                        <Line
-                            type="monotone"
-                            dataKey="resultadoEntrada"
-                            name="Entradas"
-                            stroke="#77e44c"
-                            strokeWidth={5}
-                            dot={{r: 5}}
-                            activeDot={{r: 8}}
-                        />
-                        <Line
-                            type="monotone"
-                            dataKey="resultadoSaida"
-                            name="Saídas"
-                            stroke="#E44C4E"
-                            strokeWidth={5}
-                            dot={{r: 5}}
-                            activeDot={{r: 8}}
-                        />                        
-                </LineChart> 
-            </ResponsiveContainer>
+            <Header>
+                <h2>Histórico de Saldo</h2>
+                <LegendContainer>
+                    <Legend color={lineColorResultadoEntrada}>
+                        <div></div>
+                        <span>Entradas</span>
+                    </Legend>
+             
+                    <Legend color={lineColorResultadoSaida}>
+                        <div></div>
+                        <span>Saida</span>
+                    </Legend>
+                </LegendContainer>
+            </Header>
+            <ChartContainer>
+                    <ResponsiveContainer>
+                        <LineChart data={data} margin={{top: 5, right: 20, left: 20, bottom: 5}}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="#cece" />
+                            <XAxis dataKey="mes" stroke="#cece" />
+                            <Tooltip />
+                                <Line
+                                    type="monotone"
+                                    dataKey="resultadoEntrada"
+                                    name="Entradas"
+                                    stroke={lineColorResultadoEntrada}
+                                    strokeWidth={5}
+                                    dot={{r: 5}}
+                                    activeDot={{r: 8}}
+                                />
+                                <Line
+                                    type="monotone"
+                                    dataKey="resultadoSaida"
+                                    name="Saídas"
+                                    stroke= {lineColorResultadoSaida}
+                                    strokeWidth={5}
+                                    dot={{r: 5}}
+                                    activeDot={{r: 8}}
+                                />                        
+                        </LineChart> 
+                    </ResponsiveContainer>
+            </ChartContainer>                
         </Container>
     )
 
