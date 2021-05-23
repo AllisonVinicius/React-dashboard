@@ -17,9 +17,10 @@ import triste from '../../assets/triste.svg';
 
 import Neutral from '../../assets/neutral.svg';
 
-import PiChart  from '../../components/Pichart';
+
 
 import HistoryBox from '../../components/historyBox';
+import { PieChart } from 'recharts';
 
 const Dashboard: React.FC = () => {
     const [mesSelect, setSelectMes] = useState<number>(new Date().getMonth() + 1);
@@ -170,13 +171,13 @@ const Dashboard: React.FC = () => {
 
 
     const historyData = useMemo(() => {
-        return ListaMeses.map((_,mes) => {
+        return ListaMeses.map((_, mes) => {
 
             let  resultEntrada = 0;
             ganho.forEach(gain => {
-                const data = new Date(gain.date);
-                const gainMes = data.getMonth();
-                const gainYear = data.getFullYear();
+                const date = new Date(gain.date);
+                const gainMes = date.getMonth();
+                const gainYear = date.getFullYear();
 
                 if(gainMes === mes && gainYear === anosSelect){
                     try{
@@ -191,9 +192,9 @@ const Dashboard: React.FC = () => {
 
             let  resultSaida = 0;
             gastosTeste.forEach(gasto => {
-                const data = new Date(gasto.date);
-                const gastoMes = data.getMonth();
-                const gastoYear = data.getFullYear();
+                const date = new Date(gasto.date);
+                const gastoMes = date.getMonth();
+                const gastoYear = date.getFullYear();
 
                 if(gastoMes === mes && gastoYear === anosSelect){
                  try{
@@ -211,9 +212,16 @@ const Dashboard: React.FC = () => {
                 resultEntrada,
                 resultSaida
             }
-        })
+        }).filter(item =>  {
+            const mesAtual = new Date().getMonth();
+            const anoAtual = new Date().getFullYear();
+
+
+            return (anosSelect === anoAtual && item.mesNumber <= mesAtual) || (anosSelect < anoAtual)
+            
+        });
     
-    },[]);
+    },[anosSelect]);
     
 
     const handMesSelecionado = (mes: string) => {
@@ -276,11 +284,12 @@ const Dashboard: React.FC = () => {
                     icon={msgemStatus.icon}
                 />
 
-                <PiChart data={diferencyEntradasSaidas}/>
+                <PieChart data={diferencyEntradasSaidas} />
+
                 <HistoryBox 
-                    data={} 
-                    lineColorResultadoEntrada={}
-                    lineColorResultadoSaida={} 
+                    data={historyData} 
+                    lineColorResultadoEntrada="#F7931B"
+                    lineColorResultadoSaida="#E44C4E"
                 />
 
 
