@@ -171,6 +171,7 @@ const Dashboard: React.FC = () => {
 
     const historyData = useMemo(() => {
         return ListaMeses.map((_,mes) => {
+
             let  resultEntrada = 0;
             ganho.forEach(gain => {
                 const data = new Date(gain.date);
@@ -178,25 +179,25 @@ const Dashboard: React.FC = () => {
                 const gainYear = data.getFullYear();
 
                 if(gainMes === mes && gainYear === anosSelect){
-                 try{
-                    resultEntrada += Number(gain.valor);
-                }catch{
-                    throw new Error("Valor invalido");
-                 }
+                    try{
+                        resultEntrada += Number(gain.valor);
+                    }catch{
+                        throw new Error("Valor invalido");
+                    }
                 }
 
             });
 
 
             let  resultSaida = 0;
-            gastos.forEach(gasto => {
+            gastosTeste.forEach(gasto => {
                 const data = new Date(gasto.date);
                 const gastoMes = data.getMonth();
                 const gastoYear = data.getFullYear();
 
-                if(gastoMes === mes &&gastoYear === anosSelect){
+                if(gastoMes === mes && gastoYear === anosSelect){
                  try{
-                    resultEntrada += Number(gasto.valor);
+                    resultSaida += Number(gasto.valor);
                 }catch{
                     throw new Error("Valor invalido");
                  }
@@ -204,7 +205,12 @@ const Dashboard: React.FC = () => {
 
             });    
 
-
+            return {
+                mesNumber: mes,
+                mes: ListaMeses[mes].substr(0,3),
+                resultEntrada,
+                resultSaida
+            }
         })
     
     },[]);
