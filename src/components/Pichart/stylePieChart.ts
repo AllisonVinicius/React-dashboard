@@ -36,8 +36,8 @@ export const Legend  = styled.li<ILegendPropriedades>`
         background-color: ${prosp => prosp.color};
         width: 40px;
         height: 40px;
-        border-radius: 3px;
-        font-size: 19px;
+        border-radius: 5px;
+        font-size: 14px;
         line-height: 40px;
         text-align: center;
 
