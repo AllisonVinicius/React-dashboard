@@ -14,6 +14,9 @@ export const Container = styled.div`
 
     background-color: ${props => props.theme.colors.tertiary};
     color: ${props => props.theme.colors.white};
+    border-radius: 7px;
+    display: flex;
+
 
 `;
 
@@ -51,15 +54,15 @@ export const Legend  = styled.li<ILegendPropriedades>`
 
 export const LegendContainer  = styled.ul`
     list-style: none;
-    overflow-y: scroll;
     height: 175px;
     padding-right: 15px;
+    overflow-y: scroll;
 
     ::-webkit-scrollbar{
         width: 10px;
     }
 
-        ::-webkit-scrollbar-thumb{
+    ::-webkit-scrollbar-thumb{
         background-color: ${props => props.theme.colors.secundary};
         border-radius: 10px;
 

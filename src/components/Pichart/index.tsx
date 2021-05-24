@@ -20,7 +20,7 @@ const PiChart: React.FC<IPieProps> = ({data}) => (
                 <h2>Relação</h2>
                 <LegendContainer>
                     { 
-                        data.map( p => (    
+                        data.map((p) => (    
                             <Legend key={p.name} color={p.color}>
                                 <div>{p.percent}%</div>
                                 <span>{p.name}</span>
@@ -36,7 +36,7 @@ const PiChart: React.FC<IPieProps> = ({data}) => (
                         <Pie data = {data} dataKey= "percent"> 
                             {//grafico de pizza!
                                 data.map((p) => ( //percorre as celula do grafico
-                                    <Cell key={p.name} fill = {p.color} />
+                                    <Cell key={p.name} fill={p.color} />
                                 ))
                             }
                         </Pie>
@@ -44,6 +44,6 @@ const PiChart: React.FC<IPieProps> = ({data}) => (
                 </ResponsiveContainer>
             </LadoDireito>
        </Container>
-    );
+);
 
 export default PiChart;
