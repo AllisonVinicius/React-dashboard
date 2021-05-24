@@ -14,13 +14,14 @@ import MsgemBox from '../../components/mesangemBox';
 
 import happy from '../../assets/happy.svg';
 import triste from '../../assets/triste.svg';
-
+import PiChart from '../../components/Pichart';
 import Neutral from '../../assets/neutral.svg';
 
 
 
 import HistoryBox from '../../components/historyBox';
-import { PieChart } from 'recharts';
+
+
 
 const Dashboard: React.FC = () => {
     const [mesSelect, setSelectMes] = useState<number>(new Date().getMonth() + 1);
@@ -123,7 +124,7 @@ const Dashboard: React.FC = () => {
                  icon: triste
               
             }
-        }else if (balancoTotal ===   0) {
+        }else if (totalGanhos ===   0 && totalGastos === 0 ) {
             return {
                 title: "Na medida do possiveel",
                 descricao:"Nao divida nem sobrou" ,
@@ -132,7 +133,7 @@ const Dashboard: React.FC = () => {
             }
               
         
-       }else{
+       }else if (balancoTotal === 0){
             return {
                 title: "Sua carteira positiva",
                 descricao:"Nao divida nem sobrou" ,
@@ -140,8 +141,17 @@ const Dashboard: React.FC = () => {
                 icon: happy
             }
         }
+        else {
+            return {
+                title: "Muito bem!",
+                descricao: "Continue assim",
+                footerTex: "invista",
+                icon: happy
 
-    },[balancoTotal]);
+            }
+        }
+
+    },[balancoTotal,totalGanhos,totalGastos]);
 
 
 
@@ -153,7 +163,7 @@ const Dashboard: React.FC = () => {
         const data = [
             {
                 name: "Entradas",
-                valor: totalGastos,
+                valor: totalGanhos,
                 percent: Number(percentualGanhos.toFixed(1)),
                 color: '#E44C4E'
             },{
@@ -173,7 +183,7 @@ const Dashboard: React.FC = () => {
     const historyData = useMemo(() => {
         return ListaMeses.map((_, mes) => {
 
-            let  resultEntrada = 0;
+            let  resultadoEntrada = 0;
             ganho.forEach(gain => {
                 const date = new Date(gain.date);
                 const gainMes = date.getMonth();
@@ -181,7 +191,7 @@ const Dashboard: React.FC = () => {
 
                 if(gainMes === mes && gainYear === anosSelect){
                     try{
-                        resultEntrada += Number(gain.valor);
+                        resultadoEntrada += Number(gain.valor);
                     }catch{
                         throw new Error("Valor invalido");
                     }
@@ -190,7 +200,7 @@ const Dashboard: React.FC = () => {
             });
 
 
-            let  resultSaida = 0;
+            let  resultadoSaida = 0;
             gastosTeste.forEach(gasto => {
                 const date = new Date(gasto.date);
                 const gastoMes = date.getMonth();
@@ -198,7 +208,7 @@ const Dashboard: React.FC = () => {
 
                 if(gastoMes === mes && gastoYear === anosSelect){
                  try{
-                    resultSaida += Number(gasto.valor);
+                    resultadoSaida += Number(gasto.valor);
                 }catch{
                     throw new Error("Valor invalido");
                  }
@@ -209,8 +219,8 @@ const Dashboard: React.FC = () => {
             return {
                 mesNumber: mes,
                 mes: ListaMeses[mes].substr(0,3),
-                resultEntrada,
-                resultSaida
+                resultadoEntrada,
+                resultadoSaida
             }
         }).filter(item =>  {
             const mesAtual = new Date().getMonth();
@@ -285,7 +295,7 @@ const Dashboard: React.FC = () => {
                     icon={msgemStatus.icon}
                 />
 
-                <PieChart data={diferencyEntradasSaidas} />
+                <PiChart data={diferencyEntradasSaidas} />
 
                 <HistoryBox 
                     data={historyData} 
