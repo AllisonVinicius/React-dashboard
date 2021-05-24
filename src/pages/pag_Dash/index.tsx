@@ -254,8 +254,24 @@ const Dashboard: React.FC = () => {
                 return valorEventual += Number(expense.valor);
             }
         });
+        const total = valorEventual + valor;
+ 
+        return [
+            {
+                name: 'Recorrente',
+                valor: valor,
+                percent: Number(((valorEventual /total) * 100).toFixed(1)),
+                color: "#F7931B"
+            },
+            {
+                name: 'Eventual',
+                valor: valorEventual,
+                percent: Number(((valorEventual /total) * 100).toFixed(1)),
+                color: "#e2662c"
+            }
+        ];
 
-    },[]);
+    },[mesSelect,anosSelect]);
 
 
 
