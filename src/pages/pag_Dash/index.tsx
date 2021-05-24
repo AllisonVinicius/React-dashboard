@@ -234,6 +234,30 @@ const Dashboard: React.FC = () => {
     
     },[anosSelect]);
     
+    const relationDepesas = useMemo(() => {
+        let valor = 0;
+        let valorEventual = 0;
+        
+        gastosTeste.filter((expense) =>{
+            const date = new Date(expense.date);
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+
+            return month === mesSelect && year === anosSelect;
+
+        })
+        .forEach((expense) => {
+            if(expense.frequencia === 'recorrente'){
+                return valorEventual += Number(expense.valor);            
+            }
+            if (expense.frequencia === 'eventual'){
+                return valorEventual += Number(expense.valor);
+            }
+        });
+
+    },[]);
+
+
 
     const handMesSelecionado = (mes: string) => {
         //funcao recebe o mes em string e convete p/numero;
