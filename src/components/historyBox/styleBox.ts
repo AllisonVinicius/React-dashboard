@@ -1,5 +1,6 @@
 import styled  from 'styled-components';
-interface ILegendPropriedades{
+
+interface ILegendProps{
     color: string;
 }
 
@@ -38,16 +39,17 @@ export const Header = styled.head`
 export const LegendContainer = styled.ul`
     list-style: none;
     display: flex;
+    padding-right: 16px;
 
 `;
-export const Legend = styled.li`
+export const Legend = styled.li<ILegendProps>`
     display: flex;
     align-items: center;
     margin-bottom: 7px;
     margin-left: 7px;
     
     > div {
-        background-color: ${prosp => prosp.color};
+        background-color: ${props => props.color};
         width: 40px;
         height: 40px;
         border-radius: 5px;
