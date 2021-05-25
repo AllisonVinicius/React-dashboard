@@ -17,7 +17,7 @@ import triste from '../../assets/triste.svg';
 import PiChart from '../../components/Pichart';
 import Neutral from '../../assets/neutral.svg';
 
-
+import BarChart, { BarChartBox }  from '../../components/BarChart'
 
 import HistoryBox from '../../components/historyBox';
 
@@ -342,6 +342,12 @@ const Dashboard: React.FC = () => {
                     lineColorResultadoEntrada="#F7931B"
                     lineColorResultadoSaida="#E44C4E"
                 />
+                {/* grafico de barras */}
+                <BarChart 
+                titulo="Saidas"
+                data={relationDepesas}
+                />
+              
 
 
             </Content>
