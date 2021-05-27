@@ -17,9 +17,9 @@ import triste from '../../assets/triste.svg';
 import PiChart from '../../components/Pichart';
 import Neutral from '../../assets/neutral.svg';
 
-import BarChart, { BarChartBox }  from '../../components/BarChart'
+import BarChart  from '../../components/BarChart'
 
-import HistoryBox from '../../components/historyBox';
+import HistoryBox from '../../components/HistoryBox';
 
 
 
@@ -126,7 +126,7 @@ const Dashboard: React.FC = () => {
             }
         }else if (totalGanhos ===   0 && totalGastos === 0 ) {
             return {
-                title: "Na medida do possiveel",
+                title: "Ops",
                 descricao:"Nao divida nem sobrou" ,
                 footerTex:"Toma cuidado!",
                  icon: Neutral
@@ -157,20 +157,20 @@ const Dashboard: React.FC = () => {
 
     const diferencyEntradasSaidas = useMemo(() => {
         const total = totalGanhos + totalGastos;
-        const percentualGanhos = (totalGanhos / total) * 100;
-        const percentualGastos = (totalGastos / total) * 100;
+        const percentualGanhos = Number(((totalGanhos / total) * 100).toFixed(1));
+        const percentualGastos = Number(((totalGastos / total) * 100).toFixed(1));
 
         const data = [
             {
                 name: "Entradas",
                 valor: totalGanhos,
-                percent: Number(percentualGanhos.toFixed(1)),
+                percent: percentualGanhos ? percentualGanhos : 0,
                 color: '#E44C4E'
             },{
 
                 name: "Saídas",
                 valor: totalGastos,
-                percent: Number(percentualGastos.toFixed(1)),
+                percent: percentualGastos ? percentualGastos : 0,
                 color: '#F7931B'
             },
         ];
@@ -181,7 +181,7 @@ const Dashboard: React.FC = () => {
 
 
     const historyData = useMemo(() => {
-        return ListaMeses.map((_, mes) => {
+        return ListaMeses.map((_, pMeses) => {
 
             let  resultadoEntrada = 0;
             ganho.forEach(gain => {
@@ -189,7 +189,7 @@ const Dashboard: React.FC = () => {
                 const gainMes = date.getMonth();
                 const gainYear = date.getFullYear();
 
-                if(gainMes === mes && gainYear === anosSelect){
+                if(gainMes === pMeses && gainYear === anosSelect){
                     try{
                         resultadoEntrada += Number(gain.valor);
                     }catch{
@@ -206,7 +206,7 @@ const Dashboard: React.FC = () => {
                 const gastoMes = date.getMonth();
                 const gastoYear = date.getFullYear();
 
-                if(gastoMes === mes && gastoYear === anosSelect){
+                if(gastoMes === pMeses && gastoYear === anosSelect){
                  try{
                     resultadoSaida += Number(gasto.valor);
                 }catch{
@@ -217,12 +217,14 @@ const Dashboard: React.FC = () => {
             });    
 
             return {
-                mesNumber: mes,
-                mes: ListaMeses[mes].substr(0,3),
+                mesNumber: pMeses,
+                mes: ListaMeses[pMeses].substr(0,3),
                 resultadoEntrada,
                 resultadoSaida
             }
-        }).filter(item =>  {
+
+        })
+        .filter(item =>  {
             const mesAtual = new Date().getMonth();
             const anoAtual = new Date().getFullYear();
 
@@ -255,18 +257,64 @@ const Dashboard: React.FC = () => {
             }
         });
         const total = valorEventual + valor;
+        const percentFrequente = Number(((valor / total) * 100).toFixed(1));
+        const percentEventual = Number(((valorEventual / total) * 100).toFixed(1));
  
         return [
             {
                 name: 'Recorrente',
                 valor: valor,
-                percent: Number(((valorEventual /total) * 100).toFixed(1)),
+                percent: percentFrequente ? percentFrequente : 0,
                 color: "#F7931B"
             },
             {
                 name: 'Eventual',
                 valor: valorEventual,
-                percent: Number(((valorEventual /total) * 100).toFixed(1)),
+                percent: percentFrequente ? percentFrequente : 0,
+                color: "#e2662c"
+            }
+        ];
+
+    },[mesSelect,anosSelect]);
+
+
+
+    const relationGanhos = useMemo(() => {
+        let valor = 0;
+        let valorEventual = 0;
+        
+        ganho.filter((ganhos) =>{
+            const date = new Date(ganhos.date);
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+
+            return month === mesSelect && year === anosSelect;
+
+        })
+        .forEach((ganhos) => {
+            if(ganhos.frequencia === 'recorrente'){
+                return valorEventual += Number(ganhos.valor);            
+            }
+            if (ganhos.frequencia === 'eventual'){
+                return valorEventual += Number(ganhos.valor);
+            }
+        });
+        const total = valorEventual + valor;
+        const percentFrequente = Number(((valor / total) * 100).toFixed(1));
+        const percentEventual = Number(((valorEventual / total) * 100).toFixed(1));
+ 
+      
+        return [
+            {
+                name: 'Recorrente',
+                valor: valor,
+                percent: percentFrequente ? percentFrequente : 0,
+                color: "#F7931B"
+            },
+            {
+                name: 'Eventual',
+                valor: valorEventual,
+                percent: percentEventual ? percentEventual : 0,
                 color: "#e2662c"
             }
         ];
@@ -344,9 +392,16 @@ const Dashboard: React.FC = () => {
                 />
                 {/* grafico de barras */}
                 <BarChart 
-                titulo="Saidas"
-                data={relationDepesas}
+                    titulo="Saidas"
+                    data={relationDepesas}
                 />
+
+                <BarChart 
+                    titulo="Entradas"
+                    data={relationGanhos}
+                />
+
+
               
 
 

@@ -4,6 +4,7 @@ import { Container } from './styleBarchart'
 import {ResponsiveContainer, BarChart,Bar,Cell, Tooltip} from 'recharts';
 import FormatValor from '../../utils/formatarValores';
 
+
 interface IBarChartProps {
     
     titulo: string;
@@ -15,10 +16,10 @@ interface IBarChartProps {
     }[],
 }
 
-export const  BarChartBox: React.FC<IBarChartProps> = ({
+const  BarChartBox: React.FC<IBarChartProps> = ({
     titulo, data
-}) => {
-    return (
+}) => (
+    
         <Container>
             <LadoEsquerdo>
                 <h2> {titulo}</h2>
@@ -37,19 +38,22 @@ export const  BarChartBox: React.FC<IBarChartProps> = ({
             <LadoDireito>
                 <ResponsiveContainer>
                     <BarChart data={data}>
-                        <Bar dataKey="valor">
+                    <Bar dataKey="valor" name="Valor">
                             {
                                 data.map((indicator) => (
                                     <Cell
                                         key={indicator.name}
                                         fill={indicator.color}
+                                        cursor = "pointer"
                                         
                                     />
                                 ))
                             }
                         </Bar>
-                        
-
+                        { <Tooltip 
+                            // cursor={{fill: 'none'}}
+                            // formatter={(valor) => formatarValores(Number(valor))} 
+                        />            }
                     </BarChart>
                 </ResponsiveContainer>
             </LadoDireito>
@@ -57,6 +61,6 @@ export const  BarChartBox: React.FC<IBarChartProps> = ({
         </Container>
     );
 
-}
+
 
 export default BarChartBox;

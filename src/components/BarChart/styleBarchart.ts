@@ -20,7 +20,7 @@ export const Container = styled.div`
 export const LadoEsquerdo = styled.aside`
     flex: 1;
 
-    padding: 30px 10px;
+    padding: 30px 20px;
 
     > h2 {
         padding-left: 16px;
@@ -57,7 +57,7 @@ export const Legend  = styled.li<ILegendPropriedades>`
     display: flex;
     align-items: center;
     margin-bottom: 7px;
-    
+    padding-left: 16px;
     > div {
         background-color: ${prosp => prosp.color};
         width: 40px;
@@ -65,9 +65,9 @@ export const Legend  = styled.li<ILegendPropriedades>`
         border-radius: 5px;
         font-size: 14px;
         line-height: 40px;
-        padding-left: 16px;
+
         text-align: center;
-        padding-left: 16px;
+    
 
     }
 
