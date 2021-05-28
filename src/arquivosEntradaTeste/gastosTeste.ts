@@ -1,9 +1,7 @@
-
-
 export default [
   {"descricao":"Energia elétrica",      "valor":"150.55","type":"saida","frequencia":"recorrente","date":"2020-01-10"},
   {"descricao":"Água",                  "valor":"75.55", "type":"saida","frequencia":"recorrente","date":"2020-01-15"},
-  {"descricao": "Telefone",             "valor":"99.99", "type":"saida","frequencia":"recorrente","date":"2020-01-23"},
+  {"descricao": "Telefone",             "valor":"99.99", "type":"saida","frequencia":"recorrente","date":"2020-01-13"},
   {"descricao":"Plano de Saúde",        "valor":"300.00","type":"saida","frequencia":"recorrente","date":"2020-01-23"},
   {"descricao":"Compras do mês",        "valor":"625.78","type":"saida","frequencia":"recorrente","date":"2020-01-23"},
   {"descricao":"Lanche",                "valor":"45.70", "type":"saida","frequencia":"eventual",  "date":"2020-01-23"},
@@ -56,5 +54,5 @@ export default [
    {"descricao":"Pizza",                 "valor":"60.00", "type":"saida","frequencia":"eventual",  "date":"2020-08-19"},
    {"descricao":"Pizza",                 "valor":"60.00", "type":"saida","frequencia":"eventual",  "date":"2020-09-19"},
    {"descricao":"Pizza",                 "valor":"60.00", "type":"saida","frequencia":"recorrente",  "date":"2020-09-19"},
-  {"descricao":"Pizza",                 "valor":"60.00", "type":"saida","frequencia":"recorrente",  "date":"2020-09-19"},
+  {"descricao":"Pizza",                 "valor":"60.00", "type":"saida","frequencia":"recorrente",  "date":"2020-09-19"}
 ];

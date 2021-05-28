@@ -24,7 +24,7 @@ const Toogle: React.FC<IToogleProps> = ({
         checkedIcon={false}
         onChange={onChance}
         />
-        <ToogleLabel>Dark</ToogleLabel>
+        <ToogleLabel>{labelRight}</ToogleLabel>
     </Container>
 
 

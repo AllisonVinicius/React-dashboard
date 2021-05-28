@@ -8,8 +8,7 @@ import Content from '../Content';
 
 
 
-const Layout: React.FC = ({children}) => {
-    return (
+const Layout: React.FC = ({children}) => (
         <GridLayout>
             <MainHeader />
             <Menu />
@@ -18,6 +17,6 @@ const Layout: React.FC = ({children}) => {
             </Content>
         </GridLayout>
     );
-}
+
 
 export default Layout;

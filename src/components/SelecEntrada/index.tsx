@@ -14,8 +14,8 @@ interface ISelectEntradaProps {
 }
 
 
-const SelectEntrada: React.FC<ISelectEntradaProps> = ({ options, onChange,defaultValue}) => {
-    return (
+const SelectEntrada: React.FC<ISelectEntradaProps> = ({ options, onChange,defaultValue}) => 
+    (
         <Container>
             <select onChange={onChange} defaultValue = {defaultValue} >
                 {
@@ -27,6 +27,6 @@ const SelectEntrada: React.FC<ISelectEntradaProps> = ({ options, onChange,defaul
             </select>            
         </Container>
     );
-}
+
 
 export default SelectEntrada;

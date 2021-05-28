@@ -1,4 +1,4 @@
-import React, {useState,useMemo} from 'react';
+import React, {useState,useMemo,useCallback} from 'react';
 import {Container,Content} from './style';
 import ContentHeader from '../../components/contentHeader';
 
@@ -323,7 +323,7 @@ const Dashboard: React.FC = () => {
 
 
 
-    const handMesSelecionado = (mes: string) => {
+    const handMesSelecionado = useCallback((mes: string) => { //use calback memoriiza funcao
         //funcao recebe o mes em string e convete p/numero;
         try{
             const parseMes = Number(mes);
@@ -332,9 +332,9 @@ const Dashboard: React.FC = () => {
         catch(error){
             throw new  Error('valor invalido de mes');
         }
-    }
+    },[]);
 
-    const handAnoSelecionado = (mes: string) => {
+    const handAnoSelecionado = useCallback((mes: string) => {
         //funcao recebe o ano em string e convete p/numero;
         try{
             const parseAno = Number(mes);
@@ -343,7 +343,7 @@ const Dashboard: React.FC = () => {
         catch(error){
             throw new  Error('valor invalido de Ano');
         }
-    }
+    },[]);
 
     return (
         <Container>

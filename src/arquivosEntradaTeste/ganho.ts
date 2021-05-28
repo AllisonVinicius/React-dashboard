@@ -1,4 +1,5 @@
-   export default[
+
+export default   [
     { "descricao": "Salário",     "valor": "1300.52", "type": "entrada", "frequencia": "recorrente", "date": "2020-01-10" }, 
     { "descricao": "Freela",      "valor": "150.13",  "type": "entrada", "frequencia": "eventual",   "date": "2020-01-17" }, 
     { "descricao": "Salário",     "valor": "2500.23", "type": "entrada", "frequencia": "recorrente", "date": "2020-02-10" }, 
