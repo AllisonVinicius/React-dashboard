@@ -6,10 +6,20 @@ import {useTheme} from '../../hooks/theme';
 
 const mainHeader: React.FC = () => {
     const {alterarTheme, theme} = useTheme();
-    const [darkTheme],setDarkTheme] = useState(() => theme.title === 'dark' ? true: false);
+    const [darkTheme,setDarkTheme]= useState(() => theme.title === 'dark' ? true: false);
+    
+    
+    const handleChangeTheme = () => {
+        setDarkTheme(!darkTheme);
+        alterarTheme();
+    }
     return (
         <Container>
-            <Toogle           
+            <Toogle    
+                labelLeft="light"
+                labelRight="Darl=k"
+                checked={darkTheme}       
+                onChance={handleChangeTheme}
             />
 
             <Profile>

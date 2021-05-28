@@ -16,7 +16,7 @@ const Toogle: React.FC<IToogleProps> = ({
     onChance
 }) => (
     <Container>
-        <ToogleLabel>Ligth</ToogleLabel>
+        <ToogleLabel>{labelLeft}</ToogleLabel>
         <ToogleSelector
 
         checked = {checked}
