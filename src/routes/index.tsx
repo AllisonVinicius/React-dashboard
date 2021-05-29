@@ -8,7 +8,7 @@ const Routes: React.FC = () => (
   
         <BrowserRouter>
         {/* <App/> */}
-        <Auth />  
+            <Auth />  
         </BrowserRouter>
 )
 

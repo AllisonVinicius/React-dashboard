@@ -11,3 +11,6 @@ const AuthRoutes: React.FC = () => (
     </Switch>
 
 );
+
+
+export default AuthRoutes;
