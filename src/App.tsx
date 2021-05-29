@@ -13,7 +13,7 @@ import light from './styles/themes/light';
 const App: React.FC = () => {
     const {theme} = useTheme();
     return (
-        <ThemeProvider theme={light}>
+        <ThemeProvider theme={dark}>
             <GlobalStyles/>
             <Routes/>
         </ThemeProvider>    

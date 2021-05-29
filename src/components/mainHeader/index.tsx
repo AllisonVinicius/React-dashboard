@@ -4,7 +4,7 @@ import Toogle from '../Toogle';
 import { Container,Profile, Welcome, UserName } from './styles';
 import {useTheme} from '../../hooks/theme';
 
-const mainHeader: React.FC = () => {
+const MainHeader: React.FC = () => {
     const {alterarTheme, theme} = useTheme();
     const [darkTheme,setDarkTheme]= useState(() => theme.title === 'dark' ? true: false);
     
@@ -16,8 +16,8 @@ const mainHeader: React.FC = () => {
     return (
         <Container>
             <Toogle    
-                labelLeft="light"
-                labelRight="Darl=k"
+                labelLeft="Light"
+                labelRight="Dark"
                 checked={darkTheme}       
                 onChance={handleChangeTheme}
             />
@@ -30,5 +30,5 @@ const mainHeader: React.FC = () => {
     );
 }
 
-export default mainHeader;
+export default MainHeader;
 

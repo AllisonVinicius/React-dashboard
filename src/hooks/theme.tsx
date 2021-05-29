@@ -36,7 +36,15 @@ interface ITheme{
 const ThemeContext = createContext<IThemeContext>({} as IThemeContext);
 
 const ThemeProvider: React.FC = ({ children }) => {
-    const [theme, setTheme] = useState<ITheme>(dark);
+    const [theme, setTheme] = useState<ITheme>(() => {
+        const themeSaved = localStorage.getItem('@react-dashboard:theme');
+
+        if(themeSaved){
+            return JSON.parse(themeSaved);
+        }else{
+            return dark;
+        }
+    });
 
     const alterarTheme = () => {
         if(theme.title === 'dark'){

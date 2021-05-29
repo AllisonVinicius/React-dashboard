@@ -237,8 +237,8 @@ const Dashboard: React.FC = () => {
     },[anosSelect]);
     
     const relationDepesas = useMemo(() => {
-        let valor = 0;
-        let valorEventual = 0;
+        let amountRecurrent = 0;
+        let amountEventual = 0;
         
         gastosTeste.filter((expense) =>{
             const date = new Date(expense.date);
@@ -250,27 +250,27 @@ const Dashboard: React.FC = () => {
         })
         .forEach((expense) => {
             if(expense.frequencia === 'recorrente'){
-                return valorEventual += Number(expense.valor);            
+                return amountRecurrent+= Number(expense.valor);            
             }
             if (expense.frequencia === 'eventual'){
-                return valorEventual += Number(expense.valor);
+                return amountEventual += Number(expense.valor);
             }
         });
-        const total = valorEventual + valor;
-        const percentFrequente = Number(((valor / total) * 100).toFixed(1));
-        const percentEventual = Number(((valorEventual / total) * 100).toFixed(1));
+        const total = amountRecurrent + amountEventual;
+        const percentFrequente = Number(((amountRecurrent / total) * 100).toFixed(1));
+        const percentEventual = Number(((amountEventual / total) * 100).toFixed(1));
  
         return [
             {
                 name: 'Recorrente',
-                valor: valor,
+                valor: amountRecurrent,
                 percent: percentFrequente ? percentFrequente : 0,
                 color: "#F7931B"
             },
             {
                 name: 'Eventual',
-                valor: valorEventual,
-                percent: percentFrequente ? percentFrequente : 0,
+                valor: amountEventual,
+                percent: percentEventual ? percentEventual : 0,
                 color: "#e2662c"
             }
         ];
@@ -280,39 +280,39 @@ const Dashboard: React.FC = () => {
 
 
     const relationGanhos = useMemo(() => {
-        let valor = 0;
+        let valorRecurrent = 0;
         let valorEventual = 0;
         
-        ganho.filter((ganhos) =>{
-            const date = new Date(ganhos.date);
+        ganho.filter((ganho) =>{
+            const date = new Date(ganho.date);
             const year = date.getFullYear();
             const month = date.getMonth() + 1;
 
             return month === mesSelect && year === anosSelect;
 
         })
-        .forEach((ganhos) => {
-            if(ganhos.frequencia === 'recorrente'){
-                return valorEventual += Number(ganhos.valor);            
+        .forEach((ganho) => {
+            if(ganho.frequencia === 'recorrente'){
+                return valorRecurrent += Number(ganho.valor);            
             }
-            if (ganhos.frequencia === 'eventual'){
-                return valorEventual += Number(ganhos.valor);
+            if (ganho.frequencia === 'eventual'){
+                return valorEventual += Number(ganho.valor);
             }
         });
-        const total = valorEventual + valor;
-        const percentFrequente = Number(((valor / total) * 100).toFixed(1));
+        const total = valorRecurrent + valorEventual;
+        const percentFrequente = Number(((valorRecurrent / total) * 100).toFixed(1));
         const percentEventual = Number(((valorEventual / total) * 100).toFixed(1));
  
       
         return [
             {
                 name: 'Recorrente',
-                valor: valor,
+                valor: valorRecurrent,
                 percent: percentFrequente ? percentFrequente : 0,
                 color: "#F7931B"
             },
             {
-                name: 'Eventual',
+                name: 'Eventuais',
                 valor: valorEventual,
                 percent: percentEventual ? percentEventual : 0,
                 color: "#e2662c"
@@ -399,12 +399,7 @@ const Dashboard: React.FC = () => {
                 <BarChart 
                     titulo="Entradas"
                     data={relationGanhos}
-                />
-
-
-              
-
-
+                />           
             </Content>
         </Container>
     );
