@@ -3,6 +3,7 @@ import React from 'react';
 import {Container,Logo, Form,FormTitle} from './styles';
 import logoImg from '../../assets/logo.svg';
 import Input from '../../components/input';
+import Button from '../../components/Button';
 
 const pag_login: React.FC = () => {
     return (
@@ -25,7 +26,7 @@ const pag_login: React.FC = () => {
                     placeholder="senha"
                     required
                     />
-                        <button type="submit">Entrar</button>
+                     <Button type="submit">Entrar</Button>
                 </Form>               
             
         </Container>
