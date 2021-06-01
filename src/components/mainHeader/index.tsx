@@ -1,7 +1,7 @@
-import React, {useMemo,useState} from 'react';
-import Toogle from '../Toogle';
+import React, {useState} from 'react';
 
-import { Container,Profile, Welcome, UserName } from './styles';
+
+import { Container } from './styles';
 import {useTheme} from '../../hooks/theme';
 
 const MainHeader: React.FC = () => {
@@ -15,17 +15,7 @@ const MainHeader: React.FC = () => {
     }
     return (
         <Container>
-            {/* <Toogle    
-                labelLeft="Light"
-                labelRight="Dark"
-                checked={darkTheme}       
-                onChance={handleChangeTheme}
-            /> */}
-
-            {/* <Profile>
-                <Welcome>Olá!</Welcome>
-                <UserName>Araujo</UserName>
-            </Profile> */}
+           
         </Container>
     );
 }

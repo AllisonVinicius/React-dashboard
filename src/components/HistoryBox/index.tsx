@@ -3,7 +3,7 @@ import {Container, ChartContainer, Header, LegendContainer,Legend} from './style
 import { ResponsiveContainer, LineChart, Line, XAxis, CartesianGrid, Tooltip} from 'recharts';
 
 
-import formatarValores  from '../../utils/formatarValores'
+
 
 interface IHistoryBoxProps {
     data: {

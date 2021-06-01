@@ -1,5 +1,5 @@
 import React from 'react';
-import logoImg from '../../assets/logo.svg';
+
 import {MdMoneyOff,MdAttachMoney} from 'react-icons/md';
 import {BiExit} from 'react-icons/bi';
 import {RiDashboardLine} from 'react-icons/ri';
@@ -7,7 +7,7 @@ import {RiDashboardLine} from 'react-icons/ri';
 
 
 
-import {Container, Header, LogImg, MenuContainer, MenuItemLink,Title } from './styles';
+import {Container, Header,  MenuContainer, MenuItemLink,Title } from './styles';
 
 const Menu: React.FC = () => {
     return (

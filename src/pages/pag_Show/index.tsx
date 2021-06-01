@@ -39,20 +39,20 @@ const Show: React.FC<IRouteParams> = ({match}) => {
     const [mesSelect, setSelectMes] = useState<number>(new Date().getMonth() + 1);
     const [anosSelect, setSelectAno] = useState<number>(new Date().getFullYear());
     const [selectFrequencia, setSelecaoFreq] = useState(['recorrente','eventual']);
-
-
+  
+    
     const { type } = match.params;
 
     const verify = useMemo(() => {
         return  type === 'entrada' ?
             {
                 title: 'Entradas',
-                lineColor: '#228B22',
+                lineColor: '#0000CD',
                 daata: ganho
 
             }:{
                 title: 'Saídas',
-                lineColor: '#E44C4E',
+                lineColor: '#DC143C',
                 daata: gastosTeste        
         }
     },[type]);
@@ -143,7 +143,7 @@ const Show: React.FC<IRouteParams> = ({match}) => {
                 valor: formatarValores(Number(item.valor)),
                 frequencia: item.frequencia,
                 dataFormat: formatarData(item.date),
-                tagColor: item.frequencia === 'recorrente' ? '#228B22' : '#E44C4E',
+                tagColor: item.frequencia === 'recorrente' ? '#0000CD' : '#DC143C',
         
             } 
         });

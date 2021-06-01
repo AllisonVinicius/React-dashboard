@@ -1,8 +1,7 @@
-import styled from 'styled-components'
+
 import { LadoDireito, LadoEsquerdo,Legend,LegendContainer } from '../Pichart/stylePieChart'
 import { Container } from './styleBarchart'
 import {ResponsiveContainer, BarChart,Bar,Cell, Tooltip} from 'recharts';
-import FormatValor from '../../utils/formatarValores';
 
 
 interface IBarChartProps {

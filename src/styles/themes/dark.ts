@@ -16,7 +16,7 @@ export default{
         corMenu: '#DC143C',
         warning: '#DC143C',
         filtro: '#FF4500',
-        filtroVerde: '#008000',
+        filtroVerde: '#0000CD',
 
     },
 
