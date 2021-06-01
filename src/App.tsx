@@ -4,7 +4,6 @@ import GlobalStyles from './styles/GlobalStyles';
 import {useTheme} from './hooks/theme';
 import Routes from './routes';
 import dark from './styles/themes/dark';
-import light from './styles/themes/light';
 
 
 

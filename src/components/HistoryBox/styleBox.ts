@@ -6,21 +6,25 @@ interface ILegendProps{
 
 export const Container = styled.div`
     width: 100%;
-    height: 340px;
+    height: 360px;
     display: flex;
     flex-direction: column;
     background-color: ${props => props.theme.colors.tertiary};
-    background-color: ${props => props.theme.colors.tertiary};
+    color: ${props => props.theme.colors.white};
 
     margin: 10px 0;
     padding: 30px 20px;
     border-radius: 7px;
-    
+
+    > h2 {
+        margin-bottom: 20px;
+        padding-left: 16px;
+    }
   
 `;
  export const ChartContainer = styled.div`
     flex: 1;
-    height: 260px;
+    //height: 260px;
 
     
  `;
@@ -35,6 +39,11 @@ export const Header = styled.head`
     > h2 {
         margin-bottom: 20px;
         padding-left: 16px;
+    }
+
+    @media(max-width: 1200px){
+        flex-direction: column;
+
     }
 `;
 export const LegendContainer = styled.ul`
@@ -62,6 +71,15 @@ export const Legend = styled.li<ILegendProps>`
 
     > span {
         margin-left: 5px;
+    }
+
+    @media(max-width: 1280px){
+        
+        > div {
+            width: 30px;
+            height: 30px;
+        }
+
     }
 
 `;

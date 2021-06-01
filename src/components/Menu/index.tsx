@@ -13,8 +13,8 @@ const Menu: React.FC = () => {
     return (
         <Container>
             <Header>
-                <LogImg src={logoImg} alt="meu dashboard" />
-                <Title>Teste Dashboard!</Title>
+                
+                <Title>Dashboard ReactJs</Title>
 
             </Header>
 

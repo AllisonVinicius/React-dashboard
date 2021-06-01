@@ -15,17 +15,17 @@ const MainHeader: React.FC = () => {
     }
     return (
         <Container>
-            <Toogle    
+            {/* <Toogle    
                 labelLeft="Light"
                 labelRight="Dark"
                 checked={darkTheme}       
                 onChance={handleChangeTheme}
-            />
+            /> */}
 
-            <Profile>
+            {/* <Profile>
                 <Welcome>Olá!</Welcome>
                 <UserName>Araujo</UserName>
-            </Profile>
+            </Profile> */}
         </Container>
     );
 }

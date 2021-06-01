@@ -165,13 +165,13 @@ const Dashboard: React.FC = () => {
                 name: "Entradas",
                 valor: totalGanhos,
                 percent: percentualGanhos ? percentualGanhos : 0,
-                color: '#E44C4E'
+                color: '#0000CD'
             },{
 
                 name: "Saídas",
                 valor: totalGastos,
                 percent: percentualGastos ? percentualGastos : 0,
-                color: '#F7931B'
+                color: '#DC143C'
             },
         ];
 
@@ -181,7 +181,7 @@ const Dashboard: React.FC = () => {
 
 
     const historyData = useMemo(() => {
-        return ListaMeses.map((_, pMeses) => {
+        return ListaMeses.map((_, mes) => {
 
             let  resultadoEntrada = 0;
             ganho.forEach(gain => {
@@ -189,7 +189,7 @@ const Dashboard: React.FC = () => {
                 const gainMes = date.getMonth();
                 const gainYear = date.getFullYear();
 
-                if(gainMes === pMeses && gainYear === anosSelect){
+                if(gainMes === mes && gainYear === anosSelect){
                     try{
                         resultadoEntrada += Number(gain.valor);
                     }catch{
@@ -206,7 +206,7 @@ const Dashboard: React.FC = () => {
                 const gastoMes = date.getMonth();
                 const gastoYear = date.getFullYear();
 
-                if(gastoMes === pMeses && gastoYear === anosSelect){
+                if(gastoMes === mes && gastoYear === anosSelect){
                  try{
                     resultadoSaida += Number(gasto.valor);
                 }catch{
@@ -217,8 +217,8 @@ const Dashboard: React.FC = () => {
             });    
 
             return {
-                mesNumber: pMeses,
-                mes: ListaMeses[pMeses].substr(0,3),
+                mesNumber: mes,
+                mes: ListaMeses[mes].substr(0,3),
                 resultadoEntrada,
                 resultadoSaida
             }
@@ -229,9 +229,7 @@ const Dashboard: React.FC = () => {
             const anoAtual = new Date().getFullYear();
 
 
-            return (anosSelect === anoAtual && item.mesNumber <= mesAtual) || (anosSelect < anoAtual)
-            
-            
+            return (anosSelect === anoAtual && item.mesNumber <= mesAtual) || (anosSelect < anoAtual)           
         });
     
     },[anosSelect]);
@@ -265,13 +263,13 @@ const Dashboard: React.FC = () => {
                 name: 'Recorrente',
                 valor: amountRecurrent,
                 percent: percentFrequente ? percentFrequente : 0,
-                color: "#F7931B"
+                color: "#0000CD"
             },
             {
                 name: 'Eventual',
                 valor: amountEventual,
                 percent: percentEventual ? percentEventual : 0,
-                color: "#e2662c"
+                color: "#DC143C"
             }
         ];
 
@@ -309,13 +307,13 @@ const Dashboard: React.FC = () => {
                 name: 'Recorrente',
                 valor: valorRecurrent,
                 percent: percentFrequente ? percentFrequente : 0,
-                color: "#F7931B"
+                color: "#0000CD"
             },
             {
                 name: 'Eventuais',
                 valor: valorEventual,
                 percent: percentEventual ? percentEventual : 0,
-                color: "#e2662c"
+                color: "#DC143C"
             }
         ];
 
@@ -357,7 +355,7 @@ const Dashboard: React.FC = () => {
                     valor ={balancoTotal}
                     avisoLabel="atualizado basrado nas entradas"              
                     icon="cifrao"
-                    color= '#10b834'
+                    color= '#3d0936'
                 />
 
                 <PalletCards
@@ -365,7 +363,7 @@ const Dashboard: React.FC = () => {
                     valor ={totalGanhos}
                     avisoLabel="atualizado basrado nas entradas"              
                     icon="setaCima"
-                    color= '#ED1'
+                    color= '#0000CD'
                 />
 
                 <PalletCards
@@ -387,8 +385,8 @@ const Dashboard: React.FC = () => {
 
                 <HistoryBox 
                     data={historyData} 
-                    lineColorResultadoEntrada="#F7931B"
-                    lineColorResultadoSaida="#E44C4E"
+                    lineColorResultadoEntrada="#0000CD"
+                    lineColorResultadoSaida="#DC143C"
                 />
                 {/* grafico de barras */}
                 <BarChart 

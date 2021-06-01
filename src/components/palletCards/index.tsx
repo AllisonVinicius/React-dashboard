@@ -41,7 +41,15 @@ const PalletCards: React.FC<IpalletCards> = ({
     return (
         <Container color={color}>
             <span>{title}</span>
-            <h1><CountUp end={valor} prefix={"R$ "} separator="." decimal="," decimals={2}/></h1> 
+            <h1>
+                <strong>R$ </strong>    
+                <CountUp 
+                    end={valor} 
+                    separator="."
+                    decimal="," 
+                    decimals={2}
+                />
+            </h1> 
             <small>{avisoLabel}</small>
             {<img src = {iconSelecionado} alt={title} />}
           
