@@ -1,18 +1,18 @@
 
-import React, { useMemo, useState, useEffect} from 'react';
-import {Container, Content, Filters} from './styles';
+import React, { useEffect, useMemo, useState } from 'react';
+import { uuid } from 'uuidv4';
 //componentes
 import ContentHeader from '../../components/contentHeader';
-import SelectEntrada from '../../components/SelecEntrada';
 import MovimentoFinanceiro from '../../components/movimentoFinanceiro';
-
+import SelectEntrada from '../../components/SelecEntrada';
+import expenses from '../../repositories/expenses';
+import gains from '../../repositories/gains';
+import formatarData from '../../utils/formatarData';
 //arquivos uteis
 import formatarValores from '../../utils/formatarValores';
-import formatarData from '../../utils/formatarData';
 import ListaMeses from '../../utils/meses';
-import {uuid} from 'uuidv4';
-import ganho from '../../arquivosEntradaTeste/ganho';
-import gastosTeste from '../../arquivosEntradaTeste/gastosTeste';
+import { Container, Content, Filters } from './styles';
+
 
 
 
@@ -48,12 +48,12 @@ const Show: React.FC<IRouteParams> = ({match}) => {
             {
                 title: 'Entradas',
                 lineColor: '#0000CD',
-                daata: ganho
+                daata: gains
 
             }:{
                 title: 'Saídas',
                 lineColor: '#DC143C',
-                daata: gastosTeste        
+                daata: expenses        
         }
     },[type]);
 

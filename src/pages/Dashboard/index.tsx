@@ -1,6 +1,4 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import ganho from '../../arquivosEntradaTeste/ganho';
-import gastosTeste from '../../arquivosEntradaTeste/gastosTeste';
 import happy from '../../assets/happy.svg';
 import Neutral from '../../assets/neutral.svg';
 import triste from '../../assets/triste.svg';
@@ -11,6 +9,8 @@ import MsgemBox from '../../components/mesangemBox';
 import PalletCards from '../../components/palletCards';
 import PiChart from '../../components/Pichart';
 import SelectEntrada from '../../components/SelecEntrada';
+import expenses from '../../repositories/expenses';
+import gains from '../../repositories/gains';
 import ListaMeses from '../../utils/meses';
 import { Container, Content } from './style';
 
@@ -31,7 +31,7 @@ const Dashboard: React.FC = () => {
     const pAnos = useMemo(() => {
         let receivedAnos: number[] = [];
 
-       [...gastosTeste, ...ganho].forEach(item => {
+       [...expenses, ...gains].forEach(item => {
             const date = new Date(item.date);
             const vAnos = date.getFullYear();
 
@@ -63,7 +63,7 @@ const Dashboard: React.FC = () => {
     const totalGanhos = useMemo (() => {
         let total: number = 0;
 
-        ganho.forEach(item => {
+        gains.forEach(item => {
             const date = new Date(item.date);
             const ano = date.getFullYear();
             const mes = date.getMonth() + 1;
@@ -87,7 +87,7 @@ const Dashboard: React.FC = () => {
     const totalGastos = useMemo (() => {
         let total: number = 0;
 
-        gastosTeste.forEach(item => {
+        expenses.forEach(item => {
             const date = new Date(item.date);
             const ano = date.getFullYear();
             const mes = date.getMonth() + 1;
@@ -122,6 +122,8 @@ const Dashboard: React.FC = () => {
                  icon: triste
               
             }
+                      
+        
         }else if (totalGanhos ===   0 && totalGastos === 0 ) {
             return {
                 title: "Ops",
@@ -131,7 +133,8 @@ const Dashboard: React.FC = () => {
             }
               
         
-       }else if (balancoTotal === 0){
+                            
+        }else if (balancoTotal === 0){
             return {
                 title: "Sua carteira positiva",
                 descricao:"Nao divida nem sobrou" ,
@@ -142,6 +145,7 @@ const Dashboard: React.FC = () => {
         else {
             return {
                 title: "Muito bem!",
+                            
                 descricao: "Continue assim",
                 footerTex: "invista",
                 icon: happy
@@ -182,7 +186,7 @@ const Dashboard: React.FC = () => {
         return ListaMeses.map((_, mes) => {
 
             let  resultadoEntrada = 0;
-            ganho.forEach(gain => {
+            gains.forEach(gain => {
                 const date = new Date(gain.date);
                 const gainMes = date.getMonth();
                 const gainYear = date.getFullYear();
@@ -199,7 +203,7 @@ const Dashboard: React.FC = () => {
 
 
             let  resultadoSaida = 0;
-            gastosTeste.forEach(gasto => {
+            expenses.forEach(gasto => {
                 const date = new Date(gasto.date);
                 const gastoMes = date.getMonth();
                 const gastoYear = date.getFullYear();
@@ -236,7 +240,7 @@ const Dashboard: React.FC = () => {
         let amountRecurrent = 0;
         let amountEventual = 0;
         
-        gastosTeste.filter((expense) =>{
+        expenses.filter((expense) =>{
             const date = new Date(expense.date);
             const year = date.getFullYear();
             const month = date.getMonth() + 1;
@@ -279,7 +283,7 @@ const Dashboard: React.FC = () => {
         let valorRecurrent = 0;
         let valorEventual = 0;
         
-        ganho.filter((ganho) =>{
+        gains.filter((ganho) =>{
             const date = new Date(ganho.date);
             const year = date.getFullYear();
             const month = date.getMonth() + 1;
