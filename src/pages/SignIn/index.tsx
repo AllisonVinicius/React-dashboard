@@ -1,11 +1,11 @@
 import React from 'react';
-
-import {Container,Logo, Form,FormTitle} from './styles';
 import logoImg from '../../assets/logo.svg';
-import Input from '../../components/input';
 import Button from '../../components/Button';
+import Input from '../../components/input';
+import { Container, Form, FormTitle, Logo } from './styles';
 
-const pag_login: React.FC = () => {
+
+const SignIn: React.FC = () => {
     return (
 
         <Container>           
@@ -37,4 +37,4 @@ const pag_login: React.FC = () => {
     
 }
 
-export default pag_login;
+export default SignIn;

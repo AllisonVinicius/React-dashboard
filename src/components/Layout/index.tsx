@@ -1,10 +1,10 @@
 import React from 'react';
-
-import { GridLayout } from './styles';
-
+import Content from '../Content';
 import MainHeader from '../mainHeader';
 import Menu from '../Menu';
-import Content from '../Content';
+import { GridLayout } from './styles';
+
+
 
 
 
@@ -16,7 +16,7 @@ const Layout: React.FC = ({children}) => (
                 {children}
             </Content>
         </GridLayout>
-    );
+);
 
 
 export default Layout;

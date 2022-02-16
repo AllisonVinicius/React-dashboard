@@ -1,10 +1,10 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
-
+import { Route, Switch } from 'react-router-dom';
 import Layout from '../components/Layout';
+import Dashboard from '../pages/Dashboard';
+import Show from '../pages/List';
 
-import Dashboard from '../pages/pag_Dash';
-import Show from '../pages/pag_Show';
+
 
 
 const AppRoutes: React.FC = () => (

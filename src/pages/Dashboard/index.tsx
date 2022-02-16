@@ -1,25 +1,24 @@
-import React, {useState,useMemo,useCallback} from 'react';
-import {Container,Content} from './style';
-import ContentHeader from '../../components/contentHeader';
-
+import React, { useCallback, useMemo, useState } from 'react';
 import ganho from '../../arquivosEntradaTeste/ganho';
 import gastosTeste from '../../arquivosEntradaTeste/gastosTeste';
-
+import happy from '../../assets/happy.svg';
+import Neutral from '../../assets/neutral.svg';
+import triste from '../../assets/triste.svg';
+import BarChart from '../../components/BarChart';
+import ContentHeader from '../../components/contentHeader';
+import HistoryBox from '../../components/HistoryBox';
+import MsgemBox from '../../components/mesangemBox';
+import PalletCards from '../../components/palletCards';
+import PiChart from '../../components/Pichart';
 import SelectEntrada from '../../components/SelecEntrada';
 import ListaMeses from '../../utils/meses';
+import { Container, Content } from './style';
 
-import PalletCards from '../../components/palletCards';
 
-import MsgemBox from '../../components/mesangemBox';
 
-import happy from '../../assets/happy.svg';
-import triste from '../../assets/triste.svg';
-import PiChart from '../../components/Pichart';
-import Neutral from '../../assets/neutral.svg';
 
-import BarChart  from '../../components/BarChart'
 
-import HistoryBox from '../../components/HistoryBox';
+
 
 
 
@@ -27,8 +26,7 @@ const Dashboard: React.FC = () => {
     const [mesSelect, setSelectMes] = useState<number>(new Date().getMonth() + 1);
     const [anosSelect, setSelectAno] = useState<number>(new Date().getFullYear());
         
-    
-  
+      
          
     const pAnos = useMemo(() => {
         let receivedAnos: number[] = [];
