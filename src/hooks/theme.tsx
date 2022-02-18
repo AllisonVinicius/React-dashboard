@@ -1,7 +1,7 @@
-import React, {createContext,useState,useContext} from 'react';
-
+import React, { createContext, useContext, useState } from 'react';
 import dark from '../styles/themes/dark';
 import light from '../styles/themes/light';
+
 
 
 interface IThemeContext {
@@ -14,7 +14,7 @@ interface ITheme{
 
     colors:{
         primary: string;
-        secundary: string
+        secondary: string;
         tertiary: string;
 
 
@@ -22,14 +22,12 @@ interface ITheme{
         black: string;
         gray: string;
 
-        sucess: string;
+        success: string;
         info: string;
-        corMenu: string;
         warning: string;
-        filtro: string;
-        filtroVerde: string;
 
-    }
+
+    },
 }
 
 
@@ -68,4 +66,4 @@ function useTheme(): IThemeContext{
     return context;
 }
 
-export {ThemeProvider, useTheme};
+export { ThemeProvider, useTheme };
