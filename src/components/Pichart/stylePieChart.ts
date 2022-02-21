@@ -27,7 +27,7 @@ export const Container = styled.div`
 `;
 
 
-export const LadoEsquerdo  = styled.aside`
+export const SideLeft  = styled.aside`
     padding: 30px 20px;
     
     > h2{
@@ -120,7 +120,7 @@ export const LegendContainer  = styled.ul`
 
 `;
 
-export const LadoDireito = styled.main`
+export const SideRight = styled.main`
     display :flex;
     flex: 1;
     justify-content: center;

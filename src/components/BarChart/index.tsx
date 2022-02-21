@@ -1,7 +1,7 @@
 
-import { LadoDireito, LadoEsquerdo,Legend,LegendContainer } from '../Pichart/stylePieChart'
-import { Container } from './styleBarchart'
-import {ResponsiveContainer, BarChart,Bar,Cell, Tooltip} from 'recharts';
+import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import { Legend, LegendContainer, SideLeft, SideRight } from '../Pichart/stylePieChart';
+import { Container } from './styleBarchart';
 
 
 interface IBarChartProps {
@@ -20,7 +20,7 @@ const  BarChartBox: React.FC<IBarChartProps> = ({
 }) => (
     
         <Container>
-            <LadoEsquerdo>
+            <SideLeft>
                 <h2> {titulo}</h2>
                 <LegendContainer>
                     { 
@@ -32,9 +32,9 @@ const  BarChartBox: React.FC<IBarChartProps> = ({
                         ))
                     }
                 </LegendContainer>
-            </LadoEsquerdo>
+            </SideLeft>
 
-            <LadoDireito>
+            <SideRight>
                 <ResponsiveContainer>
                     <BarChart data={data}>
                     <Bar dataKey="valor" name="Valor">
@@ -55,7 +55,7 @@ const  BarChartBox: React.FC<IBarChartProps> = ({
                         />            }
                     </BarChart>
                 </ResponsiveContainer>
-            </LadoDireito>
+            </SideRight>
 
         </Container>
     );

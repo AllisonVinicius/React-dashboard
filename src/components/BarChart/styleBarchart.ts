@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 
 interface ILegendPropriedades{
@@ -26,7 +26,7 @@ export const Container = styled.div`
 
 `;
 
-export const LadoEsquerdo = styled.aside`
+export const SideLeft = styled.aside`
     flex: 1;
 
     padding: 30px 20px;
@@ -107,7 +107,7 @@ export const Legend  = styled.li<ILegendPropriedades>`
      
     }
 `;
-export const LadoDireito = styled.main`
+export const SideRight = styled.main`
     flex: 1;
     min-height: 150px;
     display: flex;
