@@ -1,6 +1,6 @@
 import React from 'react';
 import Content from '../Content';
-import MainHeader from '../mainHeader';
+import MainHeader from '../MainHeader';
 import Menu from '../Menu';
 import { GridLayout } from './styles';
 
