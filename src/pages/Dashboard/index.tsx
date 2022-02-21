@@ -3,7 +3,7 @@ import happy from '../../assets/happy.svg';
 import Neutral from '../../assets/neutral.svg';
 import triste from '../../assets/triste.svg';
 import BarChart from '../../components/BarChart';
-import ContentHeader from '../../components/contentHeader';
+import ContentHeader from '../../components/ContentHeader';
 import HistoryBox from '../../components/HistoryBox';
 import MsgemBox from '../../components/mesangemBox';
 import PalletCards from '../../components/palletCards';

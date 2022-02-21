@@ -2,7 +2,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { uuid } from 'uuidv4';
 //componentes
-import ContentHeader from '../../components/contentHeader';
+import ContentHeader from '../../components/ContentHeader';
 import MovimentoFinanceiro from '../../components/movimentoFinanceiro';
 import SelectEntrada from '../../components/SelecEntrada';
 import expenses from '../../repositories/expenses';
