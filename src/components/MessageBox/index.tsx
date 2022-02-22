@@ -1,26 +1,27 @@
 import React from 'react';
+import { Container } from './styleBox';
 
-import {Container} from './styleBox';
 
 
 
 
 interface IMsgemBox{
     title: string;
-    descricao: string;
+    description: string;
     footerTex: string;
     icon: string;
 }
 
 
 
-const MsgemBox: React.FC<IMsgemBox> = ({title,descricao,footerTex,icon}) => {
+const MessageBox: React.FC<IMsgemBox> = ({title,description
+    ,footerTex,icon}) => {
     return (
         <Container>
             <header>
                 <h1>{title} <img src={icon} alt="{title}" /></h1>                
             </header>
-            <p>{descricao}</p>
+            <p>{description}</p>
             <footer>
                 <span>{footerTex}</span>
             </footer>
@@ -28,4 +29,4 @@ const MsgemBox: React.FC<IMsgemBox> = ({title,descricao,footerTex,icon}) => {
     );
 }
 
-export default MsgemBox;
+export default MessageBox;

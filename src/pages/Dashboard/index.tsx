@@ -5,7 +5,7 @@ import triste from '../../assets/triste.svg';
 import BarChart from '../../components/BarChart';
 import ContentHeader from '../../components/ContentHeader';
 import HistoryBox from '../../components/HistoryBox';
-import MsgemBox from '../../components/mesangemBox';
+import MessageBox from '../../components/MessageBox';
 import PalletCards from '../../components/palletCards';
 import PiChart from '../../components/Pichart';
 import SelectEntrada from '../../components/SelecEntrada';
@@ -13,10 +13,6 @@ import expenses from '../../repositories/expenses';
 import gains from '../../repositories/gains';
 import ListaMeses from '../../utils/meses';
 import { Container, Content } from './style';
-
-
-
-
 
 
 
@@ -376,9 +372,9 @@ const Dashboard: React.FC = () => {
                     icon="setaBaixo"
                 />
 
-                <MsgemBox  
+                <MessageBox  
                     title={msgemStatus.title} 
-                    descricao={msgemStatus.descricao}
+                    description={msgemStatus.descricao}
                     footerTex={msgemStatus.footerTex}
                     icon={msgemStatus.icon}
                 />
