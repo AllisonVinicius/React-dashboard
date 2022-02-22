@@ -1,8 +1,8 @@
 import React from 'react';
+import { Container } from './styles';
 
-import {Container } from './styles';
 
-interface ISelectEntradaProps {
+interface ISelectInput {
     options:{
         value: string | number;
         label: string | number;
@@ -14,7 +14,7 @@ interface ISelectEntradaProps {
 }
 
 
-const SelectEntrada: React.FC<ISelectEntradaProps> = ({ options, onChange,defaultValue}) => 
+const SelectInput: React.FC<ISelectInput> = ({ options, onChange,defaultValue}) => 
     (
         <Container>
             <select onChange={onChange} defaultValue = {defaultValue} >
@@ -29,4 +29,4 @@ const SelectEntrada: React.FC<ISelectEntradaProps> = ({ options, onChange,defaul
     );
 
 
-export default SelectEntrada;
+export default SelectInput;
