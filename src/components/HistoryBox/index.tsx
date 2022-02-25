@@ -11,7 +11,7 @@ interface IHistoryBoxProps {
         amountEntry: number;
         amountOutput: number;
 
-    },
+    }[],
     lineColorAmountEntry: string;
     lineColorAmountOutput: string;
 }
