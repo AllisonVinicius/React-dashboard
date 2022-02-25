@@ -3,8 +3,8 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { uuid } from 'uuidv4';
 //componentes
 import ContentHeader from '../../components/ContentHeader';
-import MovimentoFinanceiro from '../../components/movimentoFinanceiro';
-import SelectEntrada from '../../components/SelecEntrada';
+import HistoryFinanceCard from '../../components/HistoryFinanceCard';
+import SelectEntrada from '../../components/SelectInput';
 import expenses from '../../repositories/expenses';
 import gains from '../../repositories/gains';
 import formatarData from '../../utils/formatarData';
@@ -173,12 +173,12 @@ const Show: React.FC<IRouteParams> = ({match}) => {
             <Content>
                 {
                     data.map(acess => (
-                        <MovimentoFinanceiro  
+                        <HistoryFinanceCard  
                             key={acess.id}
-                            bordaCartao={acess.tagColor} /**cor da borda dos itens */
+                            tagColor={acess.tagColor} /**cor da borda dos itens */
                             title={acess.descricao}
                             subTitle={acess.dataFormat}
-                            valor={acess.valor}                
+                            amount={acess.valor}                
                         />
                     ))
                 }

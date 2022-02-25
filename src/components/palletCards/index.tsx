@@ -1,40 +1,38 @@
 
-import React,{useMemo} from 'react';
+import React, { useMemo } from 'react';
 import CountUp from 'react-countup';
+import arrowDownImg from '../../assets/arrow-down.svg';
+import arrowUpImg from '../../assets/arrow-up.svg';
+import dolarImg from '../../assets/dolar.svg';
+import { Container } from './styledCards';
 
 
-import cifrao from '../../assets/cifrao.svg';
-import setaCima from '../../assets/setaCima.svg';
-import setaBaixo from '../../assets/setaBaixo.svg';
 
-import {Container } from './styledCards';
-
-interface IpalletCards { 
+interface IWalletBoxProps{ 
     //interface com caracteristicas do Cards
     title: string;
-    valor: number;
-    avisoLabel: string;
-    icon: 'cifrao' | 'setaCima' | 'setaBaixo';
+    amount: number;
+    footerlabel: string;
+    icon: 'dolar' | 'arrowUp' | 'arrowDown';
     color: string;
 }
 
 
 
-const PalletCards: React.FC<IpalletCards> = ({
-    title,valor,avisoLabel,icon,color
+const WalletBox: React.FC<IWalletBoxProps> = ({
+    title,amount,footerlabel,icon,color
 }) => {
 
-    const iconSelecionado = useMemo(() => { //funcao verifica o icone dos cards, guarda o estado
-        switch(icon){
-            case 'cifrao':
-                return cifrao;
-            case 'setaBaixo':
-                return setaBaixo;
-            case 'setaCima':
-                return setaCima;
+    const iconSelected = useMemo(() => {
+        switch (icon) {
+            case 'dolar':
+                return dolarImg;
+            case 'arrowUp': 
+                return arrowUpImg;
+            case 'arrowDown':
+                return arrowDownImg;
             default:
-                return undefined;
-            
+              return undefined;
         }
     },[icon]);
 
@@ -44,17 +42,17 @@ const PalletCards: React.FC<IpalletCards> = ({
             <h1>
                 <strong>R$ </strong>    
                 <CountUp 
-                    end={valor} 
+                    end={amount} 
                     separator="."
                     decimal="," 
                     decimals={2}
                 />
             </h1> 
-            <small>{avisoLabel}</small>
-            {<img src = {iconSelecionado} alt={title} />}
+            <small>{footerlabel}</small>
+            {<img src={iconSelected} alt={title} />}
           
         </Container>
     );
 }
 
-export default PalletCards;
+export default WalletBox;

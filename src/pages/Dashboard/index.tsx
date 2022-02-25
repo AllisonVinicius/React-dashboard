@@ -7,8 +7,8 @@ import ContentHeader from '../../components/ContentHeader';
 import HistoryBox from '../../components/HistoryBox';
 import MessageBox from '../../components/MessageBox';
 import PalletCards from '../../components/palletCards';
-import PiChart from '../../components/Pichart';
-import SelectEntrada from '../../components/SelecEntrada';
+import PieChartBox from '../../components/PieChartBox';
+import SelectEntrada from '../../components/SelectInput';
 import expenses from '../../repositories/expenses';
 import gains from '../../repositories/gains';
 import ListaMeses from '../../utils/meses';
@@ -379,8 +379,8 @@ const Dashboard: React.FC = () => {
                     icon={msgemStatus.icon}
                 />
 
-                <PiChart data={diferencyEntradasSaidas} />
-
+                <PieChartBox data={diferencyEntradasSaidas} />
+              
                 <HistoryBox 
                     data={historyData} 
                     lineColorResultadoEntrada="#0000CD"

@@ -1,6 +1,6 @@
 
 import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip } from 'recharts';
-import { Legend, LegendContainer, SideLeft, SideRight } from '../Pichart/stylePieChart';
+import { Legend, LegendContainer, SideLeft, SideRight } from '../PieChartBox/stylePieChart';
 import { Container } from './styleBarchart';
 
 
