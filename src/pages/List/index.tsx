@@ -26,14 +26,14 @@ interface IRouteParams{
 
 interface IData{
     id: string;
-    descricao: string;
-    valor: string;
-    frequencia: string;
-    dataFormat: string;
+    description: string;
+    amountFormatted: string;
+    frequency: string;
+    dateFormatted: string;
     tagColor: string;
 }
 
-const Show: React.FC<IRouteParams> = ({match}) => {
+const List: React.FC<IRouteParams> = ({match}) => {
 /**filtros de informacoes */
     const [data,setData] = useState<IData[]>([]);
     const [mesSelect, setSelectMes] = useState<number>(new Date().getMonth() + 1);
@@ -41,45 +41,47 @@ const Show: React.FC<IRouteParams> = ({match}) => {
     const [selectFrequencia, setSelecaoFreq] = useState(['recorrente','eventual']);
   
     
-    const { type } = match.params;
+    const  movimentType  = match.params;
 
-    const verify = useMemo(() => {
-        return  type === 'entrada' ?
+    const pageData = useMemo(() => {
+        return  movimentType === 'entry-balance' ?
             {
                 title: 'Entradas',
                 lineColor: '#0000CD',
-                daata: gains
+                data: gains
 
             }:{
                 title: 'Saídas',
                 lineColor: '#DC143C',
-                daata: expenses        
+                data: expenses        
         }
-    },[type]);
+    },[movimentType]);
 
      
-    const pAnos = useMemo(() => {
-        let receivedAnos: number[] = [];
+    const years = useMemo(() => {
+        let uniqueYears: number[] = [];
 
-        verify.daata.forEach(item => {
+        const { data } = pageData;
+
+          data.forEach(item => {
             const date = new Date(item.date);
-            const vAnos = date.getFullYear();
+            const year = date.getFullYear();
 
 
-            if(!receivedAnos.includes(vAnos)){
-                receivedAnos.push(vAnos);
+            if(!uniqueYears.includes(year)){
+                uniqueYears.push(year);
 
             }
 
         });
 
-        return receivedAnos.map(vAnos => {
+        return uniqueYears.map(year => {
             return {
-                value:vAnos,
-                label:vAnos,
+                value:year,
+                label:year,
             }
         });
-    },[verify.daata]);
+    },[pageData]);
     
 
     const pMeses = useMemo(() => {
@@ -94,7 +96,7 @@ const Show: React.FC<IRouteParams> = ({match}) => {
     },[]);
 
 
-    const botaoFrequenciaClick = (freq: string) => {
+    const handleFrequencyClick = (freq: string) => {
         const alreadySelected = selectFrequencia.findIndex(item => item === freq);
 
         if(alreadySelected >= 0){
@@ -105,7 +107,7 @@ const Show: React.FC<IRouteParams> = ({match}) => {
             }
     }   
 
-    const handMesSelecionado = (mes: string) => {
+    const handleMonthSelected = (mes: string) => {
         //funcao recebe o mes em string e convete p/numero;
         try{
             const parseMes = Number(mes);
@@ -116,7 +118,7 @@ const Show: React.FC<IRouteParams> = ({match}) => {
         }
     }
 
-    const handAnoSelecionado = (mes: string) => {
+    const handleYearSelected  = (mes: string) => {
         //funcao recebe o ano em string e convete p/numero;
         try{
             const parseAno = Number(mes);
@@ -128,15 +130,16 @@ const Show: React.FC<IRouteParams> = ({match}) => {
     }
 
     useEffect(() => {
-       const dataFiltrada =  verify.daata.filter(item => {
+        const {data} = pageData;
+       const dataFiltrada =  data.filter(item => {
         const date = new Date(item.date);
-        const mes = date.getMonth() + 1;
-        const ano = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
 
-        return mes === mesSelect &&  ano === anosSelect && selectFrequencia.includes(item.frequencia);
+        return month === mesSelect &&  year === anosSelect && selectFrequencia.includes(item.frequencia);
        });
         
-       const dataFormatada = dataFiltrada.map(item => {              
+       const formattedData = dataFiltrada.map(item => {              
             return {
                 id: uuid(),
                 descricao: item.descricao,
@@ -147,24 +150,24 @@ const Show: React.FC<IRouteParams> = ({match}) => {
         
             } 
         });
-        setData(dataFormatada);
-    },[verify.daata,mesSelect,anosSelect, data.length, selectFrequencia]);
+        setData(formattedData);
+    },[pageData, monthSelected, yearSelected, data.length, frequencyFilterSelected]);
 
     return (
         <Container>
-             <ContentHeader title={verify.title} lineColor={verify.lineColor}>
-                <SelectEntrada options={pMeses}  onChange={(e) => handMesSelecionado(e.target.value)} defaultValue={mesSelect}/>
-                <SelectEntrada options={pAnos} onChange={(e) => handAnoSelecionado(e.target.value)} defaultValue={anosSelect}/>
+             <ContentHeader title={pageData.title} lineColor={pageData.lineColor}>
+                <SelectEntrada options={months}  onChange={(e) =>  handleMonthSelected(e.target.value)} defaultValue={mesSelect}/>
+                <SelectEntrada options={years} onChange={(e) => handleYearSelected(e.target.value)} defaultValue={anosSelect}/>
             </ContentHeader>
 
             <Filters>
                 <button type="button" className= {`tag-filter tag-filter-recurrent ${selectFrequencia.includes('recorrente') && 'tag-actived'}`}  
-                onClick={() => botaoFrequenciaClick('recorrente')}>
+                onClick={() => handleFrequencyClick('recorrente')}>
                     Previstos
                 </button>
 
                 <button type="button" className={`tag-filter tag-filter-eventual ${selectFrequencia.includes('eventual') && 'tag-actived'}`}  
-                 onClick={() => botaoFrequenciaClick('eventual')}>
+                 onClick={() => handleFrequencyClick('eventual')}>
                     Não Previstos
                 </button>
 
@@ -176,9 +179,9 @@ const Show: React.FC<IRouteParams> = ({match}) => {
                         <HistoryFinanceCard  
                             key={acess.id}
                             tagColor={acess.tagColor} /**cor da borda dos itens */
-                            title={acess.descricao}
-                            subTitle={acess.dataFormat}
-                            amount={acess.valor}                
+                            title={acess.description}
+                            subTitle={acess.dateFormatted}
+                            amount={acess.amountFormatted}                
                         />
                     ))
                 }
@@ -187,4 +190,4 @@ const Show: React.FC<IRouteParams> = ({match}) => {
     );
 }
 
-export default Show;
+export default List;
