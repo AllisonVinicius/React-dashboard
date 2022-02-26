@@ -6,9 +6,9 @@ import BarChart from '../../components/BarChart';
 import ContentHeader from '../../components/ContentHeader';
 import HistoryBox from '../../components/HistoryBox';
 import MessageBox from '../../components/MessageBox';
-import PalletCards from '../../components/palletCards';
 import PieChartBox from '../../components/PieChartBox';
 import SelectEntrada from '../../components/SelectInput';
+import WalletBox from '../../components/WalletBox';
 import expenses from '../../repositories/expenses';
 import gains from '../../repositories/gains';
 import ListaMeses from '../../utils/meses';
@@ -348,28 +348,28 @@ const Dashboard: React.FC = () => {
                 <SelectEntrada options={pAnos} onChange={(e) => handAnoSelecionado(e.target.value)} defaultValue={anosSelect}/>
             </ContentHeader>
             <Content>
-                <PalletCards
+                <WalletBox
                     title="Saldo"
-                    valor ={balancoTotal}
-                    avisoLabel="atualizado basrado nas entradas"              
-                    icon="cifrao"
+                    amount={balancoTotal}
+                    footerlabel="atualizado basrado nas entradas"              
+                    icon="dolar"
                     color= '#3d0936'
                 />
 
-                <PalletCards
+                <WalletBox
                     title="Entrada"
-                    valor ={totalGanhos}
-                    avisoLabel="atualizado basrado nas entradas"              
-                    icon="setaCima"
+                    amount={totalGanhos}
+                    footerlabel="atualizado basrado nas entradas"              
+                    icon="arrowUp"
                     color= '#0000CD'
                 />
 
-                <PalletCards
+                <WalletBox
                     title="Saída"
                     color= '#DC143C'
-                    valor ={totalGastos}
-                    avisoLabel="atualizado basrado nas saidas"              
-                    icon="setaBaixo"
+                    amount={totalGastos}
+                    footerlabel="atualizado basrado nas saidas"              
+                    icon="arrowDown"
                 />
 
                 <MessageBox  
