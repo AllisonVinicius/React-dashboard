@@ -16,7 +16,7 @@ import listOfMonths from '../../utils/months';
 import {
     Container,
     Content
-} from './styles';
+} from './style';
 
 
 
@@ -367,7 +367,7 @@ const Dashboard: React.FC = () => {
                 <MessageBox
                     title={message.title}
                     description={message.description}
-                    footerText={message.footerText}
+                    footerTex={message.footerText}
                     icon={message.icon}
                 />
 
@@ -381,7 +381,7 @@ const Dashboard: React.FC = () => {
 
                 <BarChartBox 
                     title="Saídas"
-                    data={relationExpensevesRecurrentVersusEventual} 
+                     data={relationExpensevesRecurrentVersusEventual} 
                 />
                 
                 <BarChartBox 

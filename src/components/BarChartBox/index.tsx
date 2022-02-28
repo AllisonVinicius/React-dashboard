@@ -6,7 +6,7 @@ import { Container } from './styleBarchart';
 
 interface IBarChartProps {
     
-    titulo: string;
+    title: string;
     data: {
         name: string;
         valor: number;
@@ -16,12 +16,12 @@ interface IBarChartProps {
 }
 
 const  BarChartBox: React.FC<IBarChartProps> = ({
-    titulo, data
+    title, data
 }) => (
     
         <Container>
             <SideLeft>
-                <h2> {titulo}</h2>
+                <h2> {title}</h2>
                 <LegendContainer>
                     { 
                         data.map((p) => (    

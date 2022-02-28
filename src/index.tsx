@@ -1,15 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {ThemeProvider} from './hooks/theme';
+import { AuthProvider } from './hooks/auth';
+import { ThemeProvider } from './hooks/theme';
+
+
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.StrictMode>    
     <ThemeProvider>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </ThemeProvider>
-
   </React.StrictMode>,
-  document.getElementById('root')
-);
-
+    document.getElementById('root')
+    );

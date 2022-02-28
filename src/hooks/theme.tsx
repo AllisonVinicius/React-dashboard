@@ -1,5 +1,3 @@
-
-  
 import React, { createContext, useContext, useState } from 'react';
 import dark from '../styles/themes/dark';
 import light from '../styles/themes/light';

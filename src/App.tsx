@@ -3,8 +3,6 @@ import { ThemeProvider } from 'styled-components';
 import { useTheme } from './hooks/theme';
 import Routes from './routes';
 import GlobalStyles from './styles/GlobalStyles';
-import dark from './styles/themes/dark';
-
 
 
 
@@ -13,12 +11,12 @@ const App: React.FC = () => {
     const {theme} = useTheme();
     
     return (
-        <ThemeProvider theme={dark}>
-            <GlobalStyles/>
+        <ThemeProvider theme={theme}>
+            <GlobalStyles />
             <Routes/>
-        </ThemeProvider>    
-        
+        </ThemeProvider>
     );
-}
+}     
+    
 
 export default App;
