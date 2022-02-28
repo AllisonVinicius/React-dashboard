@@ -7,8 +7,8 @@ import HistoryFinanceCard from '../../components/HistoryFinanceCard';
 import SelectEntrada from '../../components/SelectInput';
 import expenses from '../../repositories/expenses';
 import gains from '../../repositories/gains';
-//arquivos uteis
-import formatarValores from '../../utils/formatarValores';
+import formatCurrency from '../../utils/formatCurrency';
+import formatDate from '../../utils/formatDate';
 import listOfMonths from '../../utils/months';
 import { Container, Content, Filters } from './styles';
 
@@ -40,20 +40,22 @@ const [yearSelected, setYearSelected] = useState<number>(new Date().getFullYear(
 const [frequencyFilterSelected, setFrequencyFilterSelected] = useState(['recorrente', 'eventual']);
   
     
-    const  movimentType  = match.params;
+    const movimentType = match.params.type;
 
     const pageData = useMemo(() => {
-        return  movimentType === 'entry-balance' ?
+        return movimentType === 'entry-balance' ?
             {
                 title: 'Entradas',
                 lineColor: '#0000CD',
                 data: gains
 
-            }:{
+            }
+            :
+            {
                 title: 'Saídas',
                 lineColor: '#DC143C',
                 data: expenses        
-        }
+            }
     },[movimentType]);
 
      
@@ -131,8 +133,9 @@ const [frequencyFilterSelected, setFrequencyFilterSelected] = useState(['recorre
 
 
     useEffect(() => {
-        const {data} = pageData;
-       const dataFiltrada =  data.filter(item => {
+       const {data} = pageData;
+
+       const filteredData =  data.filter(item => {
         const date = new Date(item.date);
         const month = date.getMonth() + 1;
         const year = date.getFullYear();
@@ -140,13 +143,13 @@ const [frequencyFilterSelected, setFrequencyFilterSelected] = useState(['recorre
         return month === monthSelected && year === yearSelected && frequencyFilterSelected.includes(item.frequency);
        });
         
-       const formattedData = dataFiltrada.map(item => {              
+       const formattedData = filteredData.map(item => {              
             return {
                 id: uuid(),
-                descricao: item.description,
-                valor: formatarValores(Number(item.amount)),
-                frequencia: item.frequency,
-                dataFormat: formatarData(item.date),
+                description: item.description,
+                amountFormatted: formatCurrency(Number(item.amount)),
+                frequency: item.frequency,
+                dateFormatted: formatDate(item.date),
                 tagColor: item.frequency === 'recorrente' ? '#0000CD' : '#DC143C',
         
             } 

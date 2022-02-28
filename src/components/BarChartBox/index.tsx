@@ -2,20 +2,18 @@
 import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { Legend, LegendContainer, SideLeft, SideRight } from '../PieChartBox/stylePieChart';
 import { Container } from './styleBarchart';
-
-
 interface IBarChartProps {
     
     title: string;
     data: {
         name: string;
-        valor: number;
+        amount: number;
         percent: number;
-        color: string;
+        color: string
     }[],
 }
 
-const  BarChartBox: React.FC<IBarChartProps> = ({
+const BarChartBox: React.FC<IBarChartProps> = ({
     title, data
 }) => (
     
@@ -37,22 +35,22 @@ const  BarChartBox: React.FC<IBarChartProps> = ({
             <SideRight>
                 <ResponsiveContainer>
                     <BarChart data={data}>
-                    <Bar dataKey="valor" name="Valor">
+                    <Bar dataKey="amount" name="Valor">
                             {
                                 data.map((indicator) => (
                                     <Cell
                                         key={indicator.name}
                                         fill={indicator.color}
-                                        cursor = "pointer"
+                                        cursor="pointer"
                                         
                                     />
                                 ))
                             }
                         </Bar>
-                        { <Tooltip 
-                            // cursor={{fill: 'none'}}
-                            // formatter={(valor) => formatarValores(Number(valor))} 
-                        />            }
+                         <Tooltip 
+                             cursor={{fill: 'none'}}
+                            // formatter={(value) => formatCurrency(Number(value))} 
+                        />            
                     </BarChart>
                 </ResponsiveContainer>
             </SideRight>

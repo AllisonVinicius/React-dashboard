@@ -1,8 +1,8 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import grinningImg from '../../assets/grinning.svg';
-import happyImg from '../../assets/happy.svg';
+import happy from '../../assets/happy.svg';
 import opsImg from '../../assets/ops.svg';
-import sadImg from '../../assets/sad.svg';
+import sad from '../../assets/sad.svg';
 import BarChartBox from '../../components/BarChartBox';
 import ContentHeader from '../../components/ContentHeader';
 import HistoryBox from '../../components/HistoryBox';
@@ -112,7 +112,7 @@ const Dashboard: React.FC = () => {
                 title: "Que triste!",
                 description: "Neste mês, você gastou mais do que deveria.",
                 footerText: "Verifique seus gastos e tente cortar algumas coisas desnecessárias.",
-                icon: sadImg
+                icon: sad
             }
         }      
         else if(totalGains === 0 && totalExpenses === 0){
@@ -136,7 +136,7 @@ const Dashboard: React.FC = () => {
                 title: "Muito bem!",
                 description: "Sua carteira está positiva!",
                 footerText: "Continue assim. Considere investir o seu saldo.",
-                icon: happyImg
+                icon: happy
             }
         }
 
@@ -324,7 +324,7 @@ const Dashboard: React.FC = () => {
     },[]);
 
 
-    return (
+    return (  
         <Container>
             <ContentHeader title="Dashboard" lineColor="#F7931B">
                 <SelectInput 
@@ -391,6 +391,7 @@ const Dashboard: React.FC = () => {
                 
             </Content>
         </Container>
+        
     );
 }
 
