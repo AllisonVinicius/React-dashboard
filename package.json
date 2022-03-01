@@ -1,42 +1,36 @@
 {
-  "name": "dashboard-test",
+  "name": "react-dashboard",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
     "@types/node": "^12.0.0",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "@types/recharts": "^1.8.19",
-    "express": "^4.17.1",
-    "react": "^17.0.2",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "@types/recharts": "^1.8.14",
+    "react": "^16.13.1",
     "react-countup": "^4.3.3",
-    "react-dom": "^17.0.2",
-    "react-icons": "^4.2.0",
+    "react-dom": "^16.13.1",
+    "react-icons": "^3.10.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
-    "react-switch": "^6.0.0",
-    "recharts": "^2.0.9",
-    "styled-components": "^5.2.3",
-    "typescript": "^4.1.2",
-    "uuidv4": "^6.2.7",
-    "web-vitals": "^1.0.1"
+    "react-scripts": "3.4.1",
+    "react-switch": "^5.0.1",
+    "recharts": "^1.8.5",
+    "styled-components": "^5.1.1",
+    "typescript": "~3.7.2",
+    "uuidv4": "^6.2.0"
   },
   "scripts": {
-    "start": "node server.js",
-    "dev": "react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [
@@ -51,7 +45,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.7",
-    "@types/styled-components": "5.1.6"
+    "@types/react-router-dom": "^5.1.5",
+    "@types/styled-components": "^5.1.1"
   }
 }
