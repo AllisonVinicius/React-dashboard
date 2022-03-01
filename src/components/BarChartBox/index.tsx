@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { Legend, LegendContainer, SideLeft, SideRight } from '../PieChartBox/stylePieChart';
 import { Container } from './styleBarchart';
@@ -16,8 +16,8 @@ interface IBarChartProps {
 const BarChartBox: React.FC<IBarChartProps> = ({
     title, data
 }) => (
-    
-        <Container>
+    <Container>
+            
             <SideLeft>
                 <h2> {title}</h2>
                 <LegendContainer>
@@ -55,6 +55,7 @@ const BarChartBox: React.FC<IBarChartProps> = ({
                 </ResponsiveContainer>
             </SideRight>
 
+    
         </Container>
     );
 

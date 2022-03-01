@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
 /**grid configuracao do conteiner da parte do main header */
     grid: MH;
-    background-color: ${props => props.theme.colors.secundary};
+    background-color: ${props => props.theme.colors.secondary};
     display: flex;
     justify-content: space-between;
     align-items: center;

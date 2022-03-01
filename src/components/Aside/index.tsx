@@ -6,7 +6,7 @@ import {
 import logoImg from '../../assets/logo.svg';
 import { useAuth } from '../../hooks/auth';
 import { useTheme } from '../../hooks/theme';
-import Toggle from '../Toggle';
+import Toggle from '../Toogle';
 import {
     Container,
     Header,
@@ -74,7 +74,7 @@ const Aside: React.FC = () => {
                     labelLeft="Light"
                     labelRight="Dark"
                     checked={darkTheme}
-                    onChange={handleChangeTheme}
+                    onChance={handleChangeTheme}
                 />
             </ThemeToggleFooter>
         </Container>

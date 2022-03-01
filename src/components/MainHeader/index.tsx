@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useTheme } from '../../hooks/theme';
+import emojis from '../../utils/emojis';
 import Toggle from '../Toogle';
 import {
     Container,
@@ -20,8 +21,7 @@ const MainHeader: React.FC = () => {
 
     const emoji = useMemo(() => {
         const indice = Math.floor(Math.random() * emojis.length);
-        return emojis[indice];
-    },[]);
+        return emojis[indice];    },[]);
 
 
     return (
@@ -30,7 +30,7 @@ const MainHeader: React.FC = () => {
                 labelLeft="Light"
                 labelRight="Dark"
                 checked={darkTheme}
-                onChange={handleChangeTheme}
+                onChance={handleChangeTheme}
             />
 
             <Profile>
@@ -39,6 +39,7 @@ const MainHeader: React.FC = () => {
             </Profile>
         </Container>
     );
-
+    }
+    
 export default MainHeader;
 
